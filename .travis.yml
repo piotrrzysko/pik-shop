@@ -4,4 +4,6 @@ services:
     - docker
     - postgresql
 jdk: oraclejdk8
+before_script:
+    - psql -c "create database pik_shop_test; create user pik_shop_test with password 'pik_shop'; grant all privileges on database pik_shop_test to pik_shop_test" -U postgres
 script: ./scripts/run_build
