@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd pik-shop-backend
+./gradlew check
