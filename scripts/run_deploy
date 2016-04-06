@@ -1,0 +1,7 @@
+#!/bin/bash
+SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="${SCRIPTS_DIR}/.."
+
+cd ${PROJECT_DIR}/pik-shop-backend/build/libs
+scp pik-shop-backend-*.jar ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}
+ssh ${DEPLOY_USER}@${DEPLOY_HOST} "${DEPLOY_SCRIPT}"
