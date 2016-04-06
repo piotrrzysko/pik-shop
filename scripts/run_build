@@ -1,4 +1,6 @@
 #!/bin/bash
+SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="${SCRIPTS_DIR}/.."
 
-cd pik-shop-backend
+cd ${PROJECT_DIR}/pik-shop-backend
 ./gradlew check
