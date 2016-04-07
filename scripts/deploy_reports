@@ -3,4 +3,4 @@ SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_DIR="${SCRIPTS_DIR}/.."
 
 cd ${PROJECT_DIR}/pik-shop-backend
-./gradlew cobertura coveralls
+scp -i ${PROJECT_DIR}/deploy_key -r build/reports ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_REPORTS_PATH}/${TRAVIS_JOB_NUMBER}
