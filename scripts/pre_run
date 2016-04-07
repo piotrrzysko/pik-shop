@@ -1,0 +1,10 @@
+#!/bin/bash
+SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="${SCRIPTS_DIR}/.."
+
+node --version
+cd ${PROJECT_DIR}/pik-shop-frontend
+npm install
+sh -e /etc/init.d/xvfb start
+npm start > /dev/null &
+npm run update-webdriver

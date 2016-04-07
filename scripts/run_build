@@ -2,5 +2,11 @@
 SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_DIR="${SCRIPTS_DIR}/.."
 
+# Java check
 cd ${PROJECT_DIR}/pik-shop-backend
 ./gradlew cobertura coveralls
+
+# JavaScript check
+cd ${PROJECT_DIR}/pik-shop-frontend
+export DISPLAY=:99.0
+node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
