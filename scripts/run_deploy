@@ -2,6 +2,11 @@
 SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_DIR="${SCRIPTS_DIR}/.."
 
+# Deploy frontend
+cd ${PROJECT_DIR}/pik-shop-frontend/app
+scp -i ${PROJECT_DIR}/deploy_key -r . ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_FRONT_PATH}
+
+# Deploy backend
 cd ${PROJECT_DIR}/pik-shop-backend
 ./gradlew build
 scp -i ${PROJECT_DIR}/deploy_key build/libs/pik-shop-backend-*.jar ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}
