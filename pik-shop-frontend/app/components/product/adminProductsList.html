@@ -1,0 +1,11 @@
+<div class="table-header">
+  <span>Produkty</span>
+</div>
+<table ng-table="productTableParams" show-filter="true" class="table table-bordered table-striped">
+  <tr ng-repeat="product in $data track by product.id">
+    <td title="'Nazwa'" filter="{name: 'text'}" sortable="'name'">{{product.name}}</td>
+    <td title="'Cena'" filter="{price: 'number'}" sortable="'price'">{{product.price | currency:'PLN '}}</td>
+    <td title="'Stan'" filter="{productState: 'select'}", filter-data="getProductStates()" sortable="'productState'">{{getProductStateName(product.productState)}}</td>
+    <td title="'Dostępna ilość'" filter="{availableCount: 'number'}" sortable="'availableCount'">{{product.availableCount}}</td>
+  </tr>
+</table>

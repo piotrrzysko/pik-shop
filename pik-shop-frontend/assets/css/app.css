@@ -1,0 +1,39 @@
+/* app css stylesheet */
+
+body {
+  background: #EFEFEF;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.table-header {
+  font-weight: bold;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+#main-nav {
+  background: #FFF;
+  background-image: none;
+  border: none;
+  border-bottom: 1px solid #E1E3DF;
+  box-shadow: none;
+}
+#main-nav .navbar-brand {
+  font-weight: bold;
+  color: #f45800;
+  font-size: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#main-nav a {
+  font-size: 18px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+#main-nav a:hover {
+  background: none;
+  cursor: pointer;
+}
+#main-nav .navbar-form {
+  padding-top: 16px;
+  padding-bottom: 10px;
+}
