@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.elka.pw.pik.shop.domain.model.Product;
 import pl.elka.pw.pik.shop.domain.repository.ProductRepository;
 import pl.elka.pw.pik.shop.domain.specification.ProductSpecification;
+import pl.elka.pw.pik.shop.dto.ProductData;
 import pl.elka.pw.pik.shop.dto.ProductSearchParams;
 
 @Service
@@ -21,5 +22,11 @@ public class ProductService {
 
     public Page<Product> findProductsPage(ProductSearchParams searchParams) {
         return productRepository.findAll(productSpecification.buildFrom(searchParams), searchParams.toPageRequest());
+    }
+
+    public void addProduct(ProductData productData) {
+        Product newProduct = new Product(productData);
+        newProduct.setId(null);
+        productRepository.save(newProduct);
     }
 }

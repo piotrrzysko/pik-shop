@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pl.elka.pw.pik.shop.domain.model.Product;
+import pl.elka.pw.pik.shop.dto.ProductData;
 import pl.elka.pw.pik.shop.dto.ProductSearchParams;
 import pl.elka.pw.pik.shop.services.ProductService;
 
@@ -25,5 +26,10 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public Page<Product> getProducts(@RequestBody ProductSearchParams searchParams) {
         return productService.findProductsPage(searchParams);
+    }
+
+    @RequestMapping(value = {"/add"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addProduct(@RequestBody ProductData productData) {
+        productService.addProduct(productData);
     }
 }

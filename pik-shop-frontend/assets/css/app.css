@@ -1,16 +1,23 @@
 /* app css stylesheet */
 
 body {
-  background: #EFEFEF;
   font-family: Arial, Helvetica, sans-serif;
 }
+hr {
+  background-color:#e5e5e5;
+  color: #e5e5e5;
+  border: 0 none;
+  height: 1px;
+}
 .table-header {
-  font-weight: bold;
-  font-size: 26px;
   margin-bottom: 10px;
 }
+.table-header-title {
+  font-weight: bold;
+  font-size: 26px;
+}
 #main-nav {
-  background: #FFF;
+  background: #EFEFEF;
   background-image: none;
   border: none;
   border-bottom: 1px solid #E1E3DF;
@@ -36,4 +43,14 @@ body {
 #main-nav .navbar-form {
   padding-top: 16px;
   padding-bottom: 10px;
+}
+.pull-right-button {
+  float: right;
+  margin-bottom: 10px;
+}
+.return-link {
+  margin-bottom: 20px;
+}
+.required-star {
+  color: #C91414;
 }

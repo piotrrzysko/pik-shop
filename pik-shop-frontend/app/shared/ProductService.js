@@ -5,7 +5,8 @@ angular
 function ProductService($q, $http, Restangular) {
 
   return {
-    getProducts: getProducts
+    getProducts: getProducts,
+    addProduct: addProduct
   };
 
   function getProducts(params) {
@@ -22,5 +23,9 @@ function ProductService($q, $http, Restangular) {
     }
 
     return Restangular.all('products').post(request);
+  }
+
+  function addProduct(productData) {
+    return Restangular.all('products/add').post(productData);
   }
 }

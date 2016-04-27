@@ -11,7 +11,11 @@ module.exports = function(config) {
       'bower_components/lodash/dist/lodash.js',
       'bower_components/restangular/dist/restangular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'app/components/**/*.js',
+      'node_modules/angular-toastr/dist/angular-toastr.tpls.js',
+      'app/components/product/adminProductsController.js',
+      'app/components/product/adminProductsListController.js',
+      'app/components/product/adminAddProductController.js',
+      'app/components/home/home.js',
       'app/shared/*.js',
       'app/*.js',
       'e2e-tests/scenarios.js'
@@ -34,6 +38,5 @@ module.exports = function(config) {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
     }
-
   });
 };

@@ -1,5 +1,7 @@
 package pl.elka.pw.pik.shop.domain.model;
 
+import pl.elka.pw.pik.shop.dto.ProductData;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -14,6 +16,20 @@ public class Product {
     private ProductState productState;
     private Long availableCount;
     private String description;
+
+    public Product() {}
+
+    public Product(ProductData productData) {
+        name = productData.getName();
+        price = productData.getPrice();
+        productState = productData.getProductState();
+        availableCount = productData.getAvailableCount();
+        description = productData.getDescription();
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;

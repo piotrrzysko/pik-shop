@@ -1,0 +1,55 @@
+<div class="row return-link">
+	<div class="col-xs-12">
+		<a class="blue-link cursor-pointer" ui-sref="^.products-list">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			<strong>
+				<span>Powrót do listy produktów</span>
+			</strong>
+		</a>
+	</div>
+</div>
+<hr class="divider">
+<form ng-submit="addProduct(productForm)" name="productForm" class="form-horizontal">
+	<div class="form-group">
+		<label for="inputName" class="col-lg-2 control-label">Nazwa<span class="required-star">*</span></label>
+		<div class="col-lg-8">
+			<input ng-model="productData.name" type="text" class="form-control" id="inputName" maxlength="50" placeholder="Nazwa produktu" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="selectProductState" class="col-lg-2 control-label">Stan<span class="required-star">*</span></label>
+		<div class="col-lg-3">
+			<select class="form-control" ng-model="productData.productState" id="selectProductState" required>
+				<option ng-repeat="option in stateIdToName" value="{{option.id}}">{{option.title}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputCount" class="col-lg-2 control-label">Ilość<span class="required-star">*</span></label>
+		<div class="col-lg-3">
+			<input type="number" ng-model="productData.availableCount" min="0" data-number-to-fixed="0" data-number-stepfactor="100" class="form-control" id="inputCount" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputPrice" class="col-lg-2 control-label">Cena<span class="required-star">*</span></label>
+		<div class="col-lg-3">
+			<div class="input-group">
+				<span class="input-group-addon">zł</span>
+				<input type="number" ng-model="productData.price" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputPrice" />
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputDescription" class="col-lg-2 control-label">Opis<span class="required-star">*</span></label>
+		<div class="col-lg-8">
+			<textarea ng-model="productData.description" class="form-control" rows="4" id="inputDescription"  maxlength="100" placeholder="Opis produktu..." required></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-lg-offset-2 col-lg-10">
+			<button type="submit" class="btn btn-primary" ng-disabled="submitButtonDisabled">
+				Dodaj
+			</button>
+		</div>
+	</div>
+</form>

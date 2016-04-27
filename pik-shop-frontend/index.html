@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.css">
+  <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
   <link rel="stylesheet" href="assets/css/app.css">
 </head>
 
@@ -28,7 +29,7 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a ui-sref="admin.product">Produkty</a></li>
+          <li><a ui-sref="admin.products.products-list">Produkty</a></li>
         </ul>
 
       </div>
@@ -49,9 +50,12 @@
   <script src="bower_components/ng-table/dist/ng-table.js"></script>
   <script src="bower_components/lodash/dist/lodash.js"></script>
   <script src="bower_components/restangular/dist/restangular.js"></script>
+  <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
   <script src="app/app.js"></script>
   <script src="app/app.routes.js"></script>
-  <script src="app/components/product/product.js"></script>
+  <script src="app/components/product/adminProductsController.js"></script>
+  <script src="app/components/product/adminProductsListController.js"></script>
+  <script src="app/components/product/adminAddProductController.js"></script>
   <script src="app/components/home/home.js"></script>
   <script src="app/shared/ProductService.js"></script>
 </body>

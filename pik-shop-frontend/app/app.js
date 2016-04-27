@@ -6,6 +6,7 @@ angular
     'app.product',
     'app.home',
     'restangular',
+    'toastr',
     'ProductService'
   ])
   .config(['RestangularProvider', function(RestangularProvider) {
