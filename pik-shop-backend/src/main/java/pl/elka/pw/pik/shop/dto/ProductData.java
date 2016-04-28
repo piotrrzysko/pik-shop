@@ -17,6 +17,13 @@ public class ProductData {
     @NotNull
     private String description;
 
+    public ProductData() {
+    }
+
+    public ProductData(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

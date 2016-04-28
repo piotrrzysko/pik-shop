@@ -12,6 +12,8 @@ import pl.elka.pw.pik.shop.dto.ProductData;
 import pl.elka.pw.pik.shop.dto.ProductSearchParams;
 import pl.elka.pw.pik.shop.services.ProductService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping({"/products"})
 public class ProductController {
@@ -29,7 +31,7 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addProduct(@RequestBody ProductData productData) {
+    public void addProduct(@Valid @RequestBody ProductData productData) {
         productService.addProduct(productData);
     }
 }
