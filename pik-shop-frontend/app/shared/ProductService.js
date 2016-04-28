@@ -22,10 +22,10 @@ function ProductService($q, $http, Restangular) {
       direction: params.sorting()[sortingCol]
     }
 
-    return Restangular.all('products').post(request);
+    return Restangular.one('products').get(request);
   }
 
   function addProduct(productData) {
-    return Restangular.all('products/add').post(productData);
+    return Restangular.all('products').post(productData);
   }
 }

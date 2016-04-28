@@ -14,6 +14,22 @@ public class ProductSearchParams extends PagableSearchParams {
         super(10, 0, null, null);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setAvailableCount(Long availableCount) {
+        this.availableCount = availableCount;
+    }
+
+    public void setProductState(Product.ProductState productState) {
+        this.productState = productState;
+    }
+
     public String getName() {
         return name;
     }

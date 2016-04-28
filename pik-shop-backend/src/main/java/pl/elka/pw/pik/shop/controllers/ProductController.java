@@ -23,12 +23,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Page<Product> getProducts(@RequestBody ProductSearchParams searchParams) {
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Page<Product> getProducts(ProductSearchParams searchParams) {
         return productService.findProductsPage(searchParams);
     }
 
-    @RequestMapping(value = {"/add"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public void addProduct(@RequestBody ProductData productData) {
         productService.addProduct(productData);
     }
