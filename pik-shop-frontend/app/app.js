@@ -10,5 +10,5 @@ angular
     'ProductService'
   ])
   .config(['RestangularProvider', function(RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:8080');
+    RestangularProvider.setBaseUrl(ENV.apiURL);
   }]);
