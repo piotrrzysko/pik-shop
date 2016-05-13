@@ -16,6 +16,8 @@ public class Product {
     private ProductState productState;
     private Long availableCount;
     private String description;
+    @OneToOne
+    private User user;
 
     public Product() {}
 
