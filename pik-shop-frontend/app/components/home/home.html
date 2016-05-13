@@ -1,0 +1,31 @@
+<ul rn-carousel class="image">
+    <li ng-repeat="image in slides">
+        <div ng-style="{'background-image': 'url(' + image.image + ')'}" class="bgimage">
+            #{{ image.id }}
+        </div>
+    </li>
+</ul>
+
+<!--<div class="inline logo-image">-->
+<!--<img ng-src="/assets/img/piesel1.jpg" />-->
+<!--</div>-->
+
+
+<nit-advanced-searchbox
+        ng-model="searchParams"
+        parameters="availableSearchParams"
+        placeholder="Search...">
+</nit-advanced-searchbox>
+
+<div class="row">
+        <uib-carousel active="active" interval="myInterval">
+            <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                    <h4 class="photo-header">Nazwa produktu {{slide.id}}</h4>
+                    <p class="photo-description">{{slide.text}}</p>
+                </div>
+            </uib-slide>
+        </uib-carousel>
+
+</div>
