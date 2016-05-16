@@ -1,0 +1,61 @@
+<div class="modal-title title-modal text-center">
+    Zarejestruj
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="center">
+                <div class="card-content">
+                    <div class="m-b-30">
+                        <div class="card-title strong pink-text">Zarejestruj</div>
+                            Witaj w PIK shop
+                    </div>
+                    <form class="form-floating" id="signup_forms" name="signupforms"
+                          ng-submit="sendSignUpRequest()">
+                        <div class="form-group">
+                            <label for="imie" class="control-label">Imie</label>
+                            <input type="text" name="chainName" class="form-control" id="imie"
+                                   ng-model="signUpRequest.chainName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nazwisko" class="control-label">Nazwisko</label>
+                            <input type="text" name="companyOrHotelName" class="form-control" id="nazwisko"
+                                   ng-model="signUpRequest.companyOrHotelName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="control-label">Email</label>
+                            <input type="email" name="emailAddress" class="form-control" id="inputEmail"
+                                   ng-model="signUpRequest.emailAddress" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="haslo" class="control-label">Hasło</label>
+                            <input type="password" name="mobile" class="form-control" id="haslo"
+                                   ng-model="signUpRequest.password" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="drugiehaslo" class="control-label">Powtórz Hasło</label>
+                            <input type="password" name="mobile" class="form-control" id="drugiehaslo"
+                                   ng-model="signUpRequest.passwordRepeat"
+                                   confirm-password="signUpRequest.password" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-action clearfix">
+                    <div class="pull-right">
+                        <button form="signup_forms" type="submit" class="btn btn-primary black-text">
+                            Zarejestruj się
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="text-center">-->
+            <!--<p class="lead">-->
+            <!--Masz już konto? <strong><a ui-sref="signIn">Zaloguj się tutaj!</a></strong>-->
+            <!--</p>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+
+</div>

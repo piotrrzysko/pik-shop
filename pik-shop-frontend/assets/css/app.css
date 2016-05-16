@@ -54,3 +54,23 @@ hr {
 .required-star {
   color: #C91414;
 }
+
+.title-modal {
+  color: #f45800;
+  font-size: 34px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.photo-description {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.photo-header {
+  font-size: 34px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
