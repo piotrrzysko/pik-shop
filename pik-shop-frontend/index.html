@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="bower_components/angular-carousel/dist/angular-carousel.css">
   <link rel="stylesheet" href="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.min.css">
   <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
+  <link rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="assets/css/app.css">
 
 </head>
@@ -35,6 +36,7 @@
           <li><a ui-sref="admin.products.products-list">Produkty</a></li>
           <li><a ng-click="home.openSignInModal()">Zaloguj</a></li>
           <li><a ng-click="home.openRegisterModal()">Zarejestruj</a></li>
+          <li><a ui-sref="profile">Moje konto</a></li>
         </ul>
       </div>
     </nav>
@@ -71,6 +73,12 @@
   <script src="app/components/product/adminAddProductController.js"></script>
   <script src="app/components/signIn/signIn.js"></script>
   <script src="app/components/signUp/signUp.js"></script>
+  <script src="app/components/profile/profile.js"></script>
+  <script src="app/components/profile/dashboard/dashboard.js"></script>
+  <script src="app/components/profile/history/history.js"></script>
+  <script src="app/components/profile/orders/orders.js"></script>
+  <script src="app/components/profile/sells/sells.js"></script>
+  <script src="app/components/profile/user/user.js"></script>
   <script src="app/components/home/home.js"></script>
   <script src="app/shared/ProductService.js"></script>
   <script src="app/shared/utils/confirmPassword.js"></script>
