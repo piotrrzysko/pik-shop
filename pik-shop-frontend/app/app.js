@@ -7,6 +7,8 @@ angular
         'app.home',
         'app.signIn',
         'app.signUp',
+        'app.profile',
+        'app.profile.dashboard',
         'ui.bootstrap',
         'angular-carousel',
         'angular-advanced-searchbox',

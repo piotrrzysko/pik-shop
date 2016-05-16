@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users") //tylko w tym miejscu poniewaz user jest slowem kluczowym w postgres SIC!!!
+@Table(name = "user_pik") //tylko w tym miejscu poniewaz user jest slowem kluczowym w postgres SIC!!!
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
