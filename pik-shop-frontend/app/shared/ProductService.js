@@ -6,7 +6,8 @@ function ProductService(Restangular, File) {
 
     return {
         getProducts: getProducts,
-        addProduct: addProduct
+        addProduct: addProduct,
+        deleteProduct: deleteProduct
     };
 
     function getProducts(params) {
@@ -41,5 +42,9 @@ function ProductService(Restangular, File) {
             .customPOST(fd, undefined, undefined, {
                 'Content-Type': undefined
             });
+    }
+
+    function deleteProduct(product) {
+        return Restangular.one("products", product.id).remove();
     }
 }

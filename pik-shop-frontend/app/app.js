@@ -5,6 +5,13 @@ angular
         'app.routes',
         'app.product',
         'app.home',
+        'app.signIn',
+        'app.signUp',
+        'app.profile',
+        'app.profile.dashboard',
+        'ui.bootstrap',
+        'angular-carousel',
+        'angular-advanced-searchbox',
         'restangular',
         'toastr',
         'ngFileUpload',
@@ -12,5 +19,5 @@ angular
         'FileService'
     ])
     .config(['RestangularProvider', function (RestangularProvider) {
-        RestangularProvider.setBaseUrl('http://localhost:8080');
+        RestangularProvider.setBaseUrl(ENV.apiURL);
     }]);

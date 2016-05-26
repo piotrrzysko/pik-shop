@@ -113,3 +113,150 @@ hr {
     border: 1px solid #cdcdcd;
     text-align: center;
 }
+
+.title-modal {
+    color: #f45800;
+    font-size: 34px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.photo-description {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.photo-header {
+    font-size: 34px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-profile {
+    padding: 60px 0px;
+    background: #f7f7f7;
+    overflow: hidden;
+}
+
+.user-profile-tabs {
+    margin-bottom: 40px;
+}
+
+.user-profile-tabs i {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.user-profile-tabs .nav-tabs > li {
+    float: none !important;
+    border-bottom: 2px solid #0A3152;
+
+}
+
+.user-profile-tabs .nav-tabs > li a:hover {
+    border: none;
+    background: #f45800;
+}
+
+.user-profile-tabs .nav-tabs > li > a {
+    background: #f49500;
+    border-radius: 0;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.42857;
+    padding: 20px 0;
+    margin-right: 0px;
+    border: none;
+}
+
+.user-profile .user-name h3 {
+    margin: 0 0 15px;
+}
+
+.user-profile-tabs .nav-tabs > li.active > a,
+.user-profile-tabs .nav-tabs > li.active > a:focus {
+    background: #f45800;
+    color: #fff;
+    border: none;
+}
+
+.user-profile .brief-info {
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0px 0px 5px #e6e6e6;
+    padding: 15px 15px 0px;
+}
+
+.user-profile .brief-info img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.user-profile .brief-info h5 i {
+    margin-right: 10px;
+    color: #f45800;
+}
+
+.user-profile .brief-info h3 {
+    margin-top: 0px;
+}
+
+.user-profile .brief-info-footer {
+    background: #e6e6e6;
+    margin: 0px -15px;
+    padding: 10px 15px;
+}
+
+.user-profile .brief-info-footer a {
+    color: #07253F;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.user-profile .brief-info-footer a:hover {
+    color: #f45800;
+}
+
+.user-profile .brief-info-footer a i {
+    margin-right: 5px;
+}
+
+.most-recent-booking .field-entry .fa-star {
+    color: #F19C4F;
+    margin: 0px;
+}
+
+.most-recent-booking .field-entry {
+    padding: 15px 15px;
+    overflow: hidden;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.most-recent-booking .field-entry p {
+    margin: 0px;
+}
+
+.most-recent-booking .field-entry p i {
+    margin: 0px 5px;
+}
+
+.most-recent-booking .field-entry a {
+    color: #f45800;
+}
+
+.confirmed {
+    color: #009933;
+}
+
+.failed {
+    color: #f45800;
+}
+
+.most-recent-booking {
+    box-shadow: 0px 0px 5px #e6e6e6;
+    overflow: hidden;
+    margin: 40px 0px;
+    background: #fff;
+}

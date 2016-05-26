@@ -33,4 +33,9 @@ public class ProductController {
                            @RequestParam("images") List<MultipartFile> images) {
         productService.addProduct(productData, images);
     }
+
+    @RequestMapping(value = "/{productId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteProduct(@PathVariable Long productId) {
+        productService.deleteProduct(productId);
+    }
 }

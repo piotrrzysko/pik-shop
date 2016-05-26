@@ -35,6 +35,15 @@
                 url: '/add',
                 templateUrl: '/app/components/product/adminProductDetail.html',
                 controller: 'AdminAddProductController'
+            }).state('signIn', {
+                url: '/signIn',
+                templateUrl: '/app/components/signIn/signIn.html',
+                controller: 'SignInController'
+            })
+            .state('signUp', {
+                url: '/signUp',
+                templateUrl: '/app/components/signUp/signUp.html',
+                controller: 'SignUpController'
             });
     }
 })();

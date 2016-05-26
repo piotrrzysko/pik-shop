@@ -12,11 +12,15 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.css">
+  <link rel="stylesheet" href="bower_components/angular-carousel/dist/angular-carousel.css">
+  <link rel="stylesheet" href="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.min.css">
   <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
+  <link rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="assets/css/app.css">
+
 </head>
 
-<body ng-app="PikShopFrontend" ng-controller="HomeController">
+<body ng-app="PikShopFrontend" ng-controller="HomeController as home">
   <header>
     <nav id="main-nav" class="navbar">
       <div class="container">
@@ -30,8 +34,10 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li><a ui-sref="admin.products.products-list">Produkty</a></li>
+          <li><a ng-click="home.openSignInModal()">Zaloguj</a></li>
+          <li><a ng-click="home.openRegisterModal()">Zarejestruj</a></li>
+          <li><a ui-sref="profile">Moje konto</a></li>
         </ul>
-
       </div>
     </nav>
   </header>
@@ -44,6 +50,7 @@
   </footer>
 
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -52,14 +59,31 @@
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
   <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/angular-carousel/dist/angular-carousel.min.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+  <script src="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.js"></script>
+  <script src="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox-tpls.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="app/env.js"></script>
   <script src="app/app.js"></script>
   <script src="app/app.routes.js"></script>
   <script src="app/components/product/adminProductsController.js"></script>
   <script src="app/components/product/adminProductsListController.js"></script>
   <script src="app/components/product/adminAddProductController.js"></script>
+  <script src="app/components/signIn/signIn.js"></script>
+  <script src="app/components/signUp/signUp.js"></script>
+  <script src="app/components/profile/profile.js"></script>
+  <script src="app/components/profile/dashboard/dashboard.js"></script>
+  <script src="app/components/profile/history/history.js"></script>
+  <script src="app/components/profile/orders/orders.js"></script>
+  <script src="app/components/profile/sells/sells.js"></script>
+  <script src="app/components/profile/user/user.js"></script>
   <script src="app/components/home/home.js"></script>
   <script src="app/shared/ProductService.js"></script>
   <script src="app/shared/FileService.js"></script>
+  <script src="app/shared/utils/confirmPassword.js"></script>
 </body>
 
 </html>
