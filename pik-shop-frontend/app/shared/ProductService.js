@@ -1,31 +1,45 @@
 angular
-  .module('ProductService', ['restangular'])
-  .factory('Product', ['$q', '$http', 'Restangular', ProductService]);
+    .module('ProductService', ['restangular'])
+    .factory('Product', ['Restangular', 'File', ProductService]);
 
-function ProductService($q, $http, Restangular) {
+function ProductService(Restangular, File) {
 
-  return {
-    getProducts: getProducts,
-    addProduct: addProduct
-  };
+    return {
+        getProducts: getProducts,
+        addProduct: addProduct
+    };
 
-  function getProducts(params) {
-    var sortingCol = Object.keys(params.sorting())[0];
-    var request = {
-      page: params.page() - 1,
-      size: params.count(),
-      name: params.filter().name,
-      price: params.filter().price,
-      availableCount: params.filter().availableCount,
-      productState: params.filter().productState,
-      sortCol: sortingCol,
-      direction: params.sorting()[sortingCol]
+    function getProducts(params) {
+        var sortingCol = Object.keys(params.sorting())[0];
+        var request = {
+            page: params.page() - 1,
+            size: params.count(),
+            name: params.filter().name,
+            price: params.filter().price,
+            availableCount: params.filter().availableCount,
+            productState: params.filter().productState,
+            sortCol: sortingCol,
+            direction: params.sorting()[sortingCol]
+        };
+
+        return Restangular.one('products').get(request);
     }
 
-    return Restangular.one('products').get(request);
-  }
+    function addProduct(productData, images) {
+        var blobFiles = File.convertFilesToBlob(images);
 
-  function addProduct(productData) {
-    return Restangular.all('products').post(productData);
-  }
+        var fd = new FormData();
+        fd.append('images', blobFiles);
+        fd.append('productData', new Blob([JSON.stringify(productData)], {
+            type: "application/json"
+        }));
+
+        return Restangular.all('products')
+            .withHttpConfig({
+                transformRequest: angular.identity
+            })
+            .customPOST(fd, undefined, undefined, {
+                'Content-Type': undefined
+            });
+    }
 }

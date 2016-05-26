@@ -1,56 +1,115 @@
 /* app css stylesheet */
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 hr {
-  background-color:#e5e5e5;
-  color: #e5e5e5;
-  border: 0 none;
-  height: 1px;
+    background-color: #e5e5e5;
+    color: #e5e5e5;
+    border: 0 none;
+    height: 1px;
 }
+
 .table-header {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
 .table-header-title {
-  font-weight: bold;
-  font-size: 26px;
+    font-weight: bold;
+    font-size: 26px;
 }
+
 #main-nav {
-  background: #EFEFEF;
-  background-image: none;
-  border: none;
-  border-bottom: 1px solid #E1E3DF;
-  box-shadow: none;
+    background: #EFEFEF;
+    border: none;
+    border-bottom: 1px solid #E1E3DF;
+    box-shadow: none;
 }
+
 #main-nav .navbar-brand {
-  font-weight: bold;
-  color: #f45800;
-  font-size: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #f45800;
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 #main-nav a {
-  font-size: 18px;
-  padding-bottom: 30px;
-  padding-top: 30px;
+    font-size: 18px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
+
 #main-nav a:hover {
-  background: none;
-  cursor: pointer;
+    background: none;
+    cursor: pointer;
 }
+
 #main-nav .navbar-form {
-  padding-top: 16px;
-  padding-bottom: 10px;
+    padding-top: 16px;
+    padding-bottom: 10px;
 }
+
 .pull-right-button {
-  float: right;
-  margin-bottom: 10px;
+    float: right;
+    margin-bottom: 10px;
 }
+
 .return-link {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .required-star {
-  color: #C91414;
+    color: #C91414;
+}
+
+.images-upload-box {
+    border: 2px dashed #e7e7e7;
+    position: relative;
+    padding: 25px;
+    height: 80px;
+    text-align: center;
+    color: #7f7f7f;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    height: 80px
+}
+
+.thumbnail-box {
+    position: relative;
+    width: 142px !important;
+    height: 135px !important;
+    margin: 0 25px 25px 0;
+}
+
+.thumbnail-img {
+    max-height: 100%;
+    max-width: 100%;
+    padding: 2px;
+}
+
+.image-placeholder-background {
+    width: 142px !important;
+    height: 135px !important;
+    background: url(../img/image-placeholder-background.png) no-repeat;
+}
+
+.cropped-thumbnail {
+    width: 142px;
+    height: 135px;
+    background-position: center center;
+    overflow: hidden;
+    border-radius: .25em;
+    border: 1px solid #cdcdcd;
+    text-align: center;
 }

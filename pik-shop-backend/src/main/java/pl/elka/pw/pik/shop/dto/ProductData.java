@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class ProductData {
+    private Long id;
     @NotNull
     private String name;
     @NotNull
@@ -18,6 +19,10 @@ public class ProductData {
     private String description;
 
     public ProductData() {
+    }
+
+    public ProductData(Product product) {
+        this.id = product.getId();
     }
 
     public ProductData(String name) {
@@ -42,5 +47,9 @@ public class ProductData {
 
     public String getDescription() {
         return description;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
