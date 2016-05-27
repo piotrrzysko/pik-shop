@@ -35,7 +35,9 @@ function ProductService(Restangular, File) {
         var blobFiles = File.convertFilesToBlob(images);
 
         var fd = new FormData();
-        fd.append('images', blobFiles);
+        (blobFiles || []).forEach(function(file) {
+            fd.append('images', file);
+        });
         fd.append('productData', new Blob([JSON.stringify(productData)], {
             type: "application/json"
         }));

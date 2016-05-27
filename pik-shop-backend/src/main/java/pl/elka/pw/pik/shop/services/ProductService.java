@@ -33,8 +33,10 @@ public class ProductService {
 
     public ProductData findProduct(Long productId) {
         Product product = productRepository.findOne(productId);
-        if (product != null)
-            return new ProductData(product);
+        if (product != null) {
+            String mainImagePath = fileService.buildFilePath(product.getMainImageFileName());
+            return new ProductData(product, mainImagePath);
+        }
         throw new RuntimeException("Unable to find product with id: " + productId);
     }
 

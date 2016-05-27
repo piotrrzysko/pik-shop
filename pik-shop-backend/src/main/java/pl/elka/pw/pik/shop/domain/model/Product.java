@@ -1,5 +1,6 @@
 package pl.elka.pw.pik.shop.domain.model;
 
+import org.springframework.beans.factory.annotation.Value;
 import pl.elka.pw.pik.shop.dto.ProductData;
 
 import javax.persistence.*;

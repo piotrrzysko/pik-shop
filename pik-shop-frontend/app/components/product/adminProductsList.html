@@ -8,18 +8,16 @@
 </div>
 <table ng-table="productTableParams" show-filter="true" class="table table-bordered table-striped">
     <tr ng-repeat="product in $data track by product.id" ng-click="viewProduct(product)" class="clickable-row">
-        <td title="'Nazwa'" filter="{name: 'text'}" sortable="'name'">{{product.name}}</td>
-        <td title="'Cena'" filter="{price: 'number'}" sortable="'price'">{{product.price | currency:'PLN '}}</td>
-        <td title="'Stan'" filter="{productState: 'select'}" , filter-data="getProductStates()"
+        <td title="'Nazwa'" filter="{name: 'text'}" sortable="'name'" class="table-cell">{{product.name}}</td>
+        <td title="'Cena'" filter="{price: 'number'}" sortable="'price'" class="table-cell">{{product.price | currency:'PLN '}}</td>
+        <td title="'Stan'" filter="{productState: 'select'}" , filter-data="getProductStates()" class="table-cell"
             sortable="'productState'">{{getProductStateName(product.productState)}}
         </td>
-        <td title="'Dostępna ilość'" filter="{availableCount: 'number'}" sortable="'availableCount'">
+        <td title="'Dostępna ilość'" filter="{availableCount: 'number'}" sortable="'availableCount'" class="table-cell">
             {{product.availableCount}}
         </td>
-        <td title="'Usuń'">
-            <button ng-click="deleteProduct(product, $event)" class="btn btn-primary btn-md">
-                <span class="glyphicon glyphicon-plus"></span> USUN PRODUKT
-            </button>
+        <td>
+            <button ng-click="deleteProduct(product, $event)" class="btn btn-danger btn-md">USUŃ</button>
         </td>
     </tr>
 </table>
