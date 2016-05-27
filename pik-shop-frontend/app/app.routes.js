@@ -35,7 +35,13 @@
                 url: '/add',
                 templateUrl: '/app/components/product/adminProductDetail.html',
                 controller: 'AdminAddProductController'
-            }).state('signIn', {
+            })
+            .state('admin.products.view-product', {
+                url: '/{productId}',
+                templateUrl: '/app/components/product/productView.html',
+                controller: 'ProductViewController'
+            })
+            .state('signIn', {
                 url: '/signIn',
                 templateUrl: '/app/components/signIn/signIn.html',
                 controller: 'SignInController'

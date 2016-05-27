@@ -17,12 +17,17 @@ public class ProductData {
     private Product.ProductState productState;
     @NotNull
     private String description;
+    private String mainImage;
 
-    public ProductData() {
-    }
+    public ProductData() {}
 
     public ProductData(Product product) {
         this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.availableCount = product.getAvailableCount();
+        this.description = product.getDescription();
+        this.mainImage = product.getMainImageFileName();
     }
 
     public ProductData(String name) {
@@ -51,5 +56,9 @@ public class ProductData {
 
     public Long getId() {
         return id;
+    }
+
+    public String getMainImage() {
+        return mainImage;
     }
 }

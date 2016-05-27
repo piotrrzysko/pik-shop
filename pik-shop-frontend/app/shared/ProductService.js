@@ -7,8 +7,13 @@ function ProductService(Restangular, File) {
     return {
         getProducts: getProducts,
         addProduct: addProduct,
-        deleteProduct: deleteProduct
+        deleteProduct: deleteProduct,
+        getProduct: getProduct
     };
+
+    function getProduct(productId) {
+        return Restangular.one('products', productId).get();
+    }
 
     function getProducts(params) {
         var sortingCol = Object.keys(params.sorting())[0];

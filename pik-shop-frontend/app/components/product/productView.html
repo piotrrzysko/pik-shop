@@ -1,0 +1,60 @@
+<div class="row return-link">
+    <div class="col-xs-12">
+        <a class="blue-link cursor-pointer" ui-sref="^.products-list">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <strong>
+                <span>Powrót do listy produktów</span>
+            </strong>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+            <div class="panel-body product-image-box">
+                <div ng-if="product.mainImage">
+                    <img ng-src="files/{{product.mainImage}}">
+                </div>
+                <div ng-if="!product.mainImage">
+                    <div class="image-placeholder"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div>
+            <h3>{{product.name}}</h3>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="product-detail-inline-block right20">
+                        <span class="product-detail-price">{{product.price | currency:'PLN '}}</span>
+                    </div>
+                    <div class="product-detail-inline-block">
+                        <input type="number" ng-model="orderItem.count" min="1" data-number-to-fixed="1"
+                               data-number-stepfactor="100" class="form-control" id="inputCount"/>
+                    </div>
+                    <div class="product-detail-inline-block">
+                        <span>z <strong>{{product.availableCount}}</strong> sztuk</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right-button">
+                <button ui-sref="." class="btn btn-success btn-lg">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> DODAJ DO KOSZYKA
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a>Opis</a></li>
+        </ul>
+        <div class="tab-body panel panel-default">
+            <div class="panel-body">
+                {{product.description}}
+            </div>
+        </div>
+    </div>
+</div>

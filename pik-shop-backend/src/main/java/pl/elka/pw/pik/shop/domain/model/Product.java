@@ -4,6 +4,7 @@ import pl.elka.pw.pik.shop.dto.ProductData;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -16,8 +17,9 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductState productState;
     private Long availableCount;
+    @Column(length = 1023)
     private String description;
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "product_image",
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "file_id")})
@@ -64,6 +66,15 @@ public class Product {
 
     public Set<File> getImages() {
         return images;
+    }
+
+    public String getMainImageFileName() {
+        if (images != null && !images.isEmpty()) {
+            Optional<File> image = images.stream().findFirst();
+            if (image.isPresent())
+                return image.get().getFileName();
+        }
+        return "";
     }
 
     public void setImages(Set<File> images) {

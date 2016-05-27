@@ -31,20 +31,18 @@ public class ProductService {
         return productRepository.findAll(productSpecification.buildFrom(searchParams), searchParams.toPageRequest());
     }
 
+    public ProductData findProduct(Long productId) {
+        Product product = productRepository.findOne(productId);
+        if (product != null)
+            return new ProductData(product);
+        throw new RuntimeException("Unable to find product with id: " + productId);
+    }
+
     public void addProduct(ProductData productData, List<MultipartFile> images) {
         Product newProduct = new Product(productData);
         Set<File> imagesUploaded = fileService.upload(images);
         newProduct.setImages(imagesUploaded);
         productRepository.save(newProduct);
-    }
-
-    public void uploadImages(Long productId, List<MultipartFile> files) {
-        Product product = productRepository.findOne(productId);
-        if (product != null) {
-            Set<File> images = fileService.upload(files);
-            product.setImages(images);
-            productRepository.save(product);
-        }
     }
 
     public void deleteProduct(Long productId) {

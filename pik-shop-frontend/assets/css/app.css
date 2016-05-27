@@ -4,6 +4,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h3 {
+    font-weight: 600;
+}
+
 hr {
     background-color: #e5e5e5;
     color: #e5e5e5;
@@ -259,4 +263,40 @@ hr {
     overflow: hidden;
     margin: 40px 0px;
     background: #fff;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.tab-body {
+    margin-top: 10px;
+}
+
+.product-detail-price {
+    color: #ff7701;
+    font-weight: 800;
+    font-size: 26px;
+}
+
+.right20 {
+    margin-right: 20px;
+}
+
+.product-detail-inline-block {
+    display: inline-block;
+}
+
+.product-image-box {
+    background-position: center center;
+    max-height: 300px;
+    overflow: hidden;
+    margin: 0 15px 15px 0;
+    text-align: center;
+}
+
+.image-placeholder {
+    height: 100%;
+    width: 100%;
+    background-color: #e0e0e0;
 }

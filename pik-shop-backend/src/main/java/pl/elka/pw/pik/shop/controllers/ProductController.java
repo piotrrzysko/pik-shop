@@ -28,10 +28,15 @@ public class ProductController {
         return productService.findProductsPage(searchParams);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public void addProduct(@Valid @RequestPart("productData") ProductData productData,
                            @RequestParam("images") List<MultipartFile> images) {
         productService.addProduct(productData, images);
+    }
+
+    @RequestMapping(value = "/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductData getProduct(@PathVariable Long productId) {
+        return productService.findProduct(productId);
     }
 
     @RequestMapping(value = "/{productId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
