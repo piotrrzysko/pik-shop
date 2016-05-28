@@ -5,6 +5,7 @@ angular
         'app.routes',
         'app.product',
         'app.home',
+        'app.cart',
         'app.signIn',
         'app.signUp',
         'app.profile',

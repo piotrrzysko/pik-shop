@@ -10,12 +10,22 @@
 <!--<img ng-src="/assets/img/piesel1.jpg" />-->
 <!--</div>-->
 
+<div class="row">
+    <div class="col-sm-9 vertical-center-row">
+        <nit-advanced-searchbox
+                ng-model="searchParams"
+                parameters="availableSearchParams"
+                placeholder="Search...">
+        </nit-advanced-searchbox>
+    </div>
+    <div class="col-sm-3 vertical-center-row">
+        <a ui-sref="cart.items-list">
+            <span class="cart-image glyphicon glyphicon-shopping-cart"></span>
+            <span class="cart-text">Twój koszyk:</span>
+        </a>
+    </div>
+</div>
 
-<nit-advanced-searchbox
-        ng-model="searchParams"
-        parameters="availableSearchParams"
-        placeholder="Search...">
-</nit-advanced-searchbox>
 
 <div class="row">
         <uib-carousel active="active" interval="myInterval">

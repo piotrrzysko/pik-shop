@@ -1,0 +1,111 @@
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a>Twój koszyk</a></li>
+        <li role="presentation"><a>Dane dostawy i płatności</a></li>
+        <li role="presentation" class="active"><a>Podsumowanie</a></li>
+    </ul>
+</div>
+<div class="row cart-form-section cart-blue-header">
+    <div class="col-sm-12">
+        <h4>Zamówione produkty</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default col-sm-12">
+            <div class="panel-body">
+                <div class="row cart-list-header">
+                    <div class="col-sm-6">Produkt</div>
+                    <div class="col-sm-2">Cena</div>
+                    <div class="col-sm-2">Ilość</div>
+                    <div class="col-sm-2">Wartość</div>
+                </div>
+                <div class="row cart-list-item-row" ng-repeat="item in order.orderItems">
+                    <div class="col-sm-1">
+                        <div class="cart-item-image">
+                            <img ng-src="{{item.productImage}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="cart-item-product-name">{{item.productName}}</span>
+                        <div class="cart-item-remove">
+                            <button class="btn btn-danger btn-sm">Usuń</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"><strong>{{item.price | currency: 'PLN '}}</strong></div>
+                    <div class="col-sm-2">{{item.amount}}</div>
+                    <div class="col-sm-2"><strong>{{item.price * item.amount | currency: 'PLN '}}</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row cart-form-section cart-blue-header">
+    <div class="col-sm-12">
+        <h4>Dane dostawy</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <strong>{{order.deliveryType}}</strong>
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>{{order.deliveryValue | currency: 'PLN '}}</strong>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div>
+                            <strong>Adres dostawy</strong>
+                        </div>
+                        <div>{{order.deliveryAddress.firstName}} {{order.deliveryAddress.lastName}}</div>
+                        <div>{{order.deliveryAddress.street}} {{order.deliveryAddress.houseNumber}}</div>
+                        <div>{{order.deliveryAddress.postalCode}} {{order.deliveryAddress.city}}</div>
+                        <div>tel. {{order.deliveryAddress.phoneNumber}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row cart-form-section cart-blue-header">
+    <div class="col-sm-12">
+        <h4>Forma płatności</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <strong>{{order.paymentType}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row cart-form-section">
+    <div class="col-sm-10">
+        <span class="cart-summary-text">Razem do zapłaty</span>
+    </div>
+    <div class="col-sm-2">
+        <div class="cart-summary-total">{{order.totalValue | currency: 'PLN '}}</div>
+        <div>
+            <span>w tym koszty dostawy: </span>
+            <span class="cart-summary-delivery">{{order.deliveryValue | currency: 'PLN '}}</span>
+        </div>
+    </div>
+</div>
+<div class="row cart-buttons-row">
+    <div class="pull-right">
+        <button class="btn btn-success btn-lg" ui-sref="cart.delivery-payment">
+            <span>Potwierdź zamówienie</span>
+            <span class="glyphicon glyphicon-ok"></span>
+        </button>
+    </div>
+</div>

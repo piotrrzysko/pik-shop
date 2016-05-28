@@ -50,6 +50,27 @@
                 url: '/signUp',
                 templateUrl: '/app/components/signUp/signUp.html',
                 controller: 'SignUpController'
+            })
+            .state("cart", {
+                abstract: true,
+                url: "/cart",
+                template: '<ui-view/>',
+                controller: 'CartController'
+            })
+            .state("cart.items-list", {
+                url: "/",
+                templateUrl: '/app/components/cart/cartItemsList.html',
+                controller: 'CartItemsListController'
+            })
+            .state("cart.delivery-payment", {
+                url: "/",
+                templateUrl: '/app/components/cart/cartDeliveryAndPayment.html',
+                controller: 'CartDeliveryAndPaymentController'
+            })
+            .state("cart.summary", {
+                url: "/",
+                templateUrl: '/app/components/cart/cartSummary.html',
+                controller: 'CartSummaryController'
             });
     }
 })();

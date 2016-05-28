@@ -4,7 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h3 {
+h3, h4 {
     font-weight: 600;
 }
 
@@ -270,7 +270,12 @@ hr {
 }
 
 .tab-body {
-    margin-top: 10px;
+    margin-top: 20px;
+}
+
+.empty-cart-body {
+    margin-top: 20px;
+    text-align: center;
 }
 
 .product-detail-price {
@@ -303,4 +308,110 @@ hr {
 
 .table-cell {
     vertical-align:middle!important;
+}
+
+.vertical-center-row {
+    float:none;
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:-4px;
+}
+
+.cart-image {
+    font-size: 24px;
+}
+
+.cart-text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cart-list-header {
+    font-size: 16px;
+    background: #EFEFEF;
+    margin-bottom: 10px;
+    height: 50px;
+    padding: 15px 0px 15px 0px;
+    margin-top: 10px;
+}
+
+.cart-list-item-row {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.cart-item-image {
+    height: 80px!important;
+    width: 80px!important;
+}
+
+.cart-item-image > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.cart-item-product-name {
+    color: #337ab7;
+    font-size: 20px;
+}
+
+.cart-item-remove {
+    margin-top: 10px;
+}
+
+.cart-buttons-row {
+    margin-top: 20px;
+    margin-bottom: 150px;
+}
+
+.cart-form-section {
+    border-top: 1px solid #efefef;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.cart-summary-text {
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.cart-summary-total {
+    color: #ff7701;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.cart-summary-delivery {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.cart-list-summary {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 20px;
+}
+
+.cart-summary-total-sm {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.cart-blue-header {
+    font-size: 16px;
+    background: #3387c8;
+    color: white;
+    margin-bottom: 10px;
+    height: 40px;
+    padding: 1px 0px 1px 0px;
+    margin-top: 10px;
+}
+
+.empty-cart {
+    font-size: 20px;
+    color: #999;
+    font-weight: 600;
 }
