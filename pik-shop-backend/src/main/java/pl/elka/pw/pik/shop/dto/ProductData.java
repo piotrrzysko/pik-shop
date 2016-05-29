@@ -21,13 +21,13 @@ public class ProductData {
 
     public ProductData() {}
 
-    public ProductData(Product product, String mainImage) {
+    public ProductData(Product product) {
         this.id = product.getId();
         this.name = product.getName();
         this.price = product.getPrice();
         this.availableCount = product.getAvailableCount();
         this.description = product.getDescription();
-        this.mainImage = mainImage;
+        this.mainImage = product.getMainImageFileName();
     }
 
     public ProductData(String name) {

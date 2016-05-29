@@ -3,29 +3,35 @@
 
     angular
         .module('app.cart')
-        .controller('CartDeliveryAndPaymentController', ['$scope', 'Product', '$state', 'toastr', CartDeliveryAndPaymentController]);
+        .controller('CartDeliveryAndPaymentController', ['$scope', 'Cart', '$state', 'toastr', CartDeliveryAndPaymentController]);
 
-    function CartDeliveryAndPaymentController($scope, Product, $state) {
+    function CartDeliveryAndPaymentController($scope, Cart, $state, toastr) {
         var init = function () {
-            $scope.order = {totalValue: 10.00, deliveryValue: 5.00};
-            $scope.order.orderItems = [{
-                id: 1,
-                productName: "Zbawcy książek",
-                price: 23,
-                amount: 1,
-                productImage: "files/file_115134026775279002.jpg"
-            }, {
-                id: 3,
-                productName: "Zbawcy książek",
-                price: 23,
-                amount: 1,
-                productImage: "files/file_115134026775279002.jpg"
-            }];
+            $scope.loadCart();
+            Cart.getPaymentTypes().then(function(paymentTypes) {
+                $scope.paymentTypes = paymentTypes;
+            });
+            Cart.getDeliveryFormTypes().then(function(deliveryFormTypes) {
+                $scope.deliveryFormTypes = deliveryFormTypes;
+            });
         };
         init();
 
-        $scope.isCartEmpty = function() {
-            return !$scope.order.orderItems || !$scope.order.orderItems.length;
-        }
+        $scope.updateOrder = function () {
+            $scope.nextStepButtonDisabled = true;
+            Cart.updateOrder($scope.order).then(function () {
+                $state.go('^.summary');
+            }, function () {
+                $scope.nextStepButtonDisabled = false;
+                toastr.error('Skontaktuj się z biurem obsługi klienta', 'Przejście do podsumowania nie powiodło się');
+            });
+        };
+
+        $scope.deliveryFormTypeChange = function() {
+            ($scope.deliveryFormTypes || []).forEach(function(type) {
+                if (type.id === $scope.order.deliveryFormType.id)
+                    $scope.order.deliveryFormType.deliveryValue = type.deliveryValue;
+            });
+        };
     }
 })();

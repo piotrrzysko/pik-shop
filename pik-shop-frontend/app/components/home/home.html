@@ -11,31 +11,28 @@
 <!--</div>-->
 
 <div class="row">
-    <div class="col-sm-9 vertical-center-row">
+    <div class="col-sm-10 vertical-center-row">
         <nit-advanced-searchbox
                 ng-model="searchParams"
                 parameters="availableSearchParams"
                 placeholder="Search...">
         </nit-advanced-searchbox>
     </div>
-    <div class="col-sm-3 vertical-center-row">
+    <div class="col-sm-2 vertical-center-row">
         <a ui-sref="cart.items-list">
             <span class="cart-image glyphicon glyphicon-shopping-cart"></span>
-            <span class="cart-text">Twój koszyk:</span>
+            <span class="cart-text">Twój koszyk</span>
         </a>
     </div>
 </div>
-
-
 <div class="row">
-        <uib-carousel active="active" interval="myInterval">
-            <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                    <h4 class="photo-header">Nazwa produktu {{slide.id}}</h4>
-                    <p class="photo-description">{{slide.text}}</p>
-                </div>
-            </uib-slide>
-        </uib-carousel>
-
+    <uib-carousel active="active" interval="myInterval">
+        <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+                <h4 class="photo-header">Nazwa produktu {{slide.id}}</h4>
+                <p class="photo-description">{{slide.text}}</p>
+            </div>
+        </uib-slide>
+    </uib-carousel>
 </div>

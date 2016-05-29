@@ -17,8 +17,10 @@ angular
         'toastr',
         'ngFileUpload',
         'ProductService',
-        'FileService'
+        'FileService',
+        'CartService',
+        'filters'
     ])
     .config(['RestangularProvider', function (RestangularProvider) {
-        RestangularProvider.setBaseUrl(ENV.apiURL);
+        RestangularProvider.setBaseUrl(ENV.apiURL).setDefaultHttpFields({withCredentials: true});
     }]);

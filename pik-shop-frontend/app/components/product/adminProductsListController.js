@@ -7,7 +7,7 @@
 
     function AdminProductsListController(NgTableParams, $scope, Product, $state) {
         $scope.viewProduct = function(product) {
-            $state.go('^.view-product', {productId: product.id});
+            $state.go('products.view-product', {productId: product.id});
         };
 
         $scope.getProductStates = function () {

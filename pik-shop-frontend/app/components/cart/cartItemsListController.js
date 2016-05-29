@@ -3,29 +3,24 @@
 
     angular
         .module('app.cart')
-        .controller('CartItemsListController', ['$scope', 'Product', '$state', 'toastr', CartItemsListController]);
+        .controller('CartItemsListController', ['$scope', 'Cart', 'toastr', CartItemsListController]);
 
-    function CartItemsListController($scope, Product, $state) {
+    function CartItemsListController($scope, Cart, toastr) {
         var init = function () {
-            $scope.order = {totalValue: 10.00};
-            $scope.order.orderItems = [{
-                id: 1,
-                productName: "Zbawcy książek",
-                price: 23,
-                amount: 1,
-                productImage: "files/file_115134026775279002.jpg"
-            }, {
-                id: 3,
-                productName: "Zbawcy książek",
-                price: 23,
-                amount: 1,
-                productImage: "files/file_115134026775279002.jpg"
-            }];
+            $scope.loadCart();
         };
         init();
 
         $scope.isCartEmpty = function() {
-            return !$scope.order.orderItems || !$scope.order.orderItems.length;
-        }
+            return !$scope.order || !$scope.order.orderItems || !$scope.order.orderItems.length;
+        };
+
+        $scope.deleteOrderItem = function(itemId) {
+            Cart.deleteOrderItem(itemId).then(function(order) {
+                $scope.order = order;
+            }, function() {
+                toastr.error('Skontaktuj się z biurem obsługi klienta', 'Usunięcie produktu nie powiodło się');
+            });
+        };
     }
 })();

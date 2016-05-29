@@ -1,8 +1,8 @@
 angular
-    .module('FileService', ['restangular'])
-    .factory('File', ['Restangular', FileService]);
+    .module('FileService', [])
+    .factory('File', [FileService]);
 
-function FileService(Restangular) {
+function FileService() {
 
     return {
         convertFilesToBlob: convertFilesToBlob

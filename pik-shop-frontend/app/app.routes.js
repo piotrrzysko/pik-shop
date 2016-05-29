@@ -36,7 +36,12 @@
                 templateUrl: '/app/components/product/adminProductDetail.html',
                 controller: 'AdminAddProductController'
             })
-            .state('admin.products.view-product', {
+            .state("products", {
+                abstract: true,
+                url: "/products",
+                template: '<ui-view/>'
+            })
+            .state('products.view-product', {
                 url: '/{productId}',
                 templateUrl: '/app/components/product/productView.html',
                 controller: 'ProductViewController'

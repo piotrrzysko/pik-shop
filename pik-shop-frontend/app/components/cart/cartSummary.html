@@ -23,14 +23,11 @@
                 <div class="row cart-list-item-row" ng-repeat="item in order.orderItems">
                     <div class="col-sm-1">
                         <div class="cart-item-image">
-                            <img ng-src="{{item.productImage}}">
+                            <img ng-src="{{item.productImage | filePath}}">
                         </div>
                     </div>
                     <div class="col-sm-5">
                         <span class="cart-item-product-name">{{item.productName}}</span>
-                        <div class="cart-item-remove">
-                            <button class="btn btn-danger btn-sm">Usuń</button>
-                        </div>
                     </div>
                     <div class="col-sm-2"><strong>{{item.price | currency: 'PLN '}}</strong></div>
                     <div class="col-sm-2">{{item.amount}}</div>
@@ -51,10 +48,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-10">
-                        <strong>{{order.deliveryType}}</strong>
+                        <strong>{{order.deliveryFormType.name}}</strong>
                     </div>
                     <div class="col-sm-2">
-                        <strong>{{order.deliveryValue | currency: 'PLN '}}</strong>
+                        <strong>{{order.deliveryFormType.deliveryValue | currency: 'PLN '}}</strong>
                     </div>
                 </div>
                 <hr>
@@ -83,27 +80,29 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <strong>{{order.paymentType}}</strong>
+                    <strong>{{order.paymentType.name}}</strong>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="row cart-form-section">
-    <div class="col-sm-10">
+    <div class="col-sm-9">
         <span class="cart-summary-text">Razem do zapłaty</span>
     </div>
-    <div class="col-sm-2">
-        <div class="cart-summary-total">{{order.totalValue | currency: 'PLN '}}</div>
+    <div class="col-sm-3">
+        <div class="cart-summary-total">
+            {{(order.deliveryFormType.deliveryValue + order.totalValueWithoutDelivery) | currency: 'PLN '}}
+        </div>
         <div>
             <span>w tym koszty dostawy: </span>
-            <span class="cart-summary-delivery">{{order.deliveryValue | currency: 'PLN '}}</span>
+            <span class="cart-summary-delivery">{{order.deliveryFormType.deliveryValue | currency: 'PLN '}}</span>
         </div>
     </div>
 </div>
 <div class="row cart-buttons-row">
     <div class="pull-right">
-        <button class="btn btn-success btn-lg" ui-sref="cart.delivery-payment">
+        <button class="btn btn-success btn-lg" ng-click="confirmOrder()" ng-disabled="confirmButtonDisabled">
             <span>Potwierdź zamówienie</span>
             <span class="glyphicon glyphicon-ok"></span>
         </button>

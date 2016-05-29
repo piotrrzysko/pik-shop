@@ -5,16 +5,17 @@
         <li role="presentation"><a>Podsumowanie</a></li>
     </ul>
 </div>
-<form ng-submit="addProduct(productForm)" name="deliveryAndPaymentForm" class="form-horizontal">
+<form ng-submit="updateOrder()" name="deliveryAndPaymentForm" class="form-horizontal">
     <div class="row">
         <div class="col-sm-12 cart-form-section">
             <h4>1. Wybierz sposób dostawy</h4>
         </div>
         <div class="row">
             <div class="col-sm-offset-2 col-sm-6">
-                <select class="form-control" ng-model="productData.productState" id="selectDeliveryType" required>
+                <select class="form-control" ng-model="order.deliveryFormType.id" ng-change="deliveryFormTypeChange()"
+                        id="selectDeliveryType" required>
                     <option value="" disabled selected class="select-placeholder">Wybierz sposób dostawy</option>
-                    <option ng-repeat="option in stateIdToName" value="{{option.id}}">{{option.title}}</option>
+                    <option ng-repeat="option in deliveryFormTypes" value="{{option.id}}">{{option.name}} - {{option.deliveryValue | currency: 'PLN '}}</option>
                 </select>
             </div>
         </div>
@@ -28,8 +29,8 @@
                 <span class="required-star">*</span>
             </label>
             <div class="col-sm-6">
-                <input ng-model="order.firstName" type="text" class="form-control" id="firstName" maxlength="50"
-                       placeholder="Imię" required>
+                <input ng-model="order.deliveryAddress.firstName" type="text" class="form-control" id="firstName"
+                       maxlength="50" placeholder="Imię" required>
             </div>
         </div>
         <div class="form-group">
@@ -37,8 +38,8 @@
                 <span class="required-star">*</span>
             </label>
             <div class="col-sm-6">
-                <input ng-model="order.lastName" type="text" class="form-control" id="lastName" maxlength="50"
-                       placeholder="Nazwisko" required>
+                <input ng-model="order.deliveryAddress.lastName" type="text" class="form-control" id="lastName"
+                       maxlength="50" placeholder="Nazwisko" required>
             </div>
         </div>
         <div class="form-group">
@@ -47,11 +48,11 @@
             </label>
             <div id="streetAndHouseNumber">
                 <div class="col-sm-4">
-                    <input ng-model="order.postalCode" type="text" class="form-control" maxlength="50"
+                    <input ng-model="order.deliveryAddress.street" type="text" class="form-control" maxlength="50"
                            placeholder="Ulica" required>
                 </div>
                 <div class="col-sm-2">
-                    <input ng-model="order.postalCode" type="text" class="form-control" maxlength="50"
+                    <input ng-model="order.deliveryAddress.houseNumber" type="text" class="form-control" maxlength="50"
                            placeholder="Numer domu" required>
                 </div>
             </div>
@@ -61,8 +62,8 @@
                 <span class="required-star">*</span>
             </label>
             <div class="col-sm-6">
-                <input ng-model="order.postalCode" type="text" class="form-control" id="postalCode" maxlength="50"
-                       placeholder="Kod pocztowy" required>
+                <input ng-model="order.deliveryAddress.postalCode" type="text" class="form-control" id="postalCode"
+                       maxlength="50" placeholder="Kod pocztowy" required>
             </div>
         </div>
         <div class="form-group">
@@ -70,7 +71,7 @@
                 <span class="required-star">*</span>
             </label>
             <div class="col-sm-6">
-                <input ng-model="order.city" type="text" class="form-control" id="city" maxlength="50"
+                <input ng-model="order.deliveryAddress.city" type="text" class="form-control" id="city" maxlength="50"
                        placeholder="Miasto" required>
             </div>
         </div>
@@ -79,8 +80,8 @@
                 <span class="required-star">*</span>
             </label>
             <div class="col-sm-6">
-                <input ng-model="order.phoneNumber" type="text" class="form-control" id="phoneNumber" maxlength="50"
-                       placeholder="Numer telefonu" required>
+                <input ng-model="order.deliveryAddress.phoneNumber" type="text" class="form-control" id="phoneNumber"
+                       maxlength="50" placeholder="Numer telefonu" required>
             </div>
         </div>
     </div>
@@ -90,34 +91,36 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-2 col-sm-6">
-                <select class="form-control" ng-model="productData.productState" id="selectPaymentType" required>
+                <select class="form-control" ng-model="order.paymentType.id" id="selectPaymentType" required>
                     <option value="" disabled selected class="select-placeholder">Wybierz formę płatności</option>
-                    <option ng-repeat="option in stateIdToName" value="{{option.id}}">{{option.title}}</option>
+                    <option ng-repeat="option in paymentTypes" value="{{option.id}}">{{option.name}}</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="row cart-form-section">
-        <div class="col-sm-10">
+        <div class="col-sm-9">
             <span class="cart-summary-text">Razem do zapłaty</span>
         </div>
-        <div class="col-sm-2">
-            <div class="cart-summary-total">{{order.totalValue | currency: 'PLN '}}</div>
+        <div class="col-sm-3">
+            <div class="cart-summary-total">
+                {{(order.deliveryFormType.deliveryValue + order.totalValueWithoutDelivery) | currency: 'PLN '}}
+            </div>
             <div>
                 <span>w tym koszty dostawy: </span>
-                <span class="cart-summary-delivery">{{order.deliveryValue | currency: 'PLN '}}</span>
+                <span class="cart-summary-delivery">{{order.deliveryFormType.deliveryValue | currency: 'PLN '}}</span>
             </div>
         </div>
     </div>
     <div class="row cart-buttons-row cart-form-section">
         <div class="pull-left">
-            <button class="btn btn-success btn-lg">
+            <button ui-sref="^.items-list" class="btn btn-success btn-lg">
                 <span class="glyphicon glyphicon-chevron-left"></span>
                 <span>Wróć do koszyka</span>
             </button>
         </div>
         <div class="pull-right">
-            <button type="submit" class="btn btn-success btn-lg" ui-sref="cart.summary">
+            <button type="submit" class="btn btn-success btn-lg" ng-disabled="nextStepButtonDisabled">
                 <span>Dalej</span>
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </button>

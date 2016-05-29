@@ -1,3 +1,4 @@
 var ENV = {
-    apiURL: 'https://sklep.domek.xyz/api'
+    apiURL: 'https://sklep.domek.xyz/api',
+    filesRepoAlias: 'files/'
 };

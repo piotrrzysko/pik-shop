@@ -1,6 +1,6 @@
 <div class="row return-link">
     <div class="col-xs-12">
-        <a class="blue-link cursor-pointer" ui-sref="^.products-list">
+        <a class="blue-link cursor-pointer" ui-sref="admin.products.products-list">
             <span class="glyphicon glyphicon-chevron-left"></span>
             <strong>
                 <span>Powrót do listy produktów</span>
@@ -13,7 +13,7 @@
         <div class="panel panel-default">
             <div class="panel-body product-image-box">
                 <div ng-if="product.mainImage">
-                    <img ng-src="{{product.mainImage}}">
+                    <img ng-src="{{product.mainImage | filePath}}">
                 </div>
                 <div ng-if="!product.mainImage">
                     <div class="image-placeholder"></div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="pull-right-button">
-                <button ui-sref="." class="btn btn-success btn-lg">
+                <button ng-click="addOrderItem()" class="btn btn-success btn-lg">
                     <span class="glyphicon glyphicon-shopping-cart"></span> DODAJ DO KOSZYKA
                 </button>
             </div>

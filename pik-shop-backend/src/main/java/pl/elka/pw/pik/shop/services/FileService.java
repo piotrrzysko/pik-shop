@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import pl.elka.pw.pik.shop.domain.model.File;
 import pl.elka.pw.pik.shop.domain.repository.FileRepository;
@@ -24,20 +23,12 @@ public class FileService {
 
     @Value("${files.repository.root}")
     private String filesRepositoryRoot;
-    @Value("${files.repository.alias}")
-    private String filesRepositoryAlias;
 
     private FileRepository fileRepository;
 
     @Autowired
     public FileService(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
-    }
-
-    public String buildFilePath(String fileName) {
-        if (!StringUtils.isEmpty(fileName))
-            return filesRepositoryAlias + "/" + fileName;
-        return "";
     }
 
     public Set<File> upload(List<MultipartFile> files) {
