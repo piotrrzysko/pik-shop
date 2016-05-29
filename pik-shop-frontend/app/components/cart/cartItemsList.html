@@ -15,13 +15,13 @@
 <div ng-if="!isCartEmpty()">
     <div class="row cart-list-header">
         <div class="col-sm-6">Produkt</div>
-        <div class="col-sm-2">Cena</div>
-        <div class="col-sm-2">Ilość</div>
-        <div class="col-sm-2">Wartość</div>
+        <div class="col-sm-2 hidden-xs">Cena</div>
+        <div class="col-sm-2 hidden-xs">Ilość</div>
+        <div class="col-sm-2 hidden-xs">Wartość</div>
     </div>
     <div class="row cart-list-item-row" ng-repeat="item in order.orderItems">
         <div class="col-sm-1">
-            <div class="cart-item-image">
+            <div class="cart-item-image" ng-if="item.productImage">
                 <img ng-src="{{item.productImage | filePath}}">
             </div>
         </div>
