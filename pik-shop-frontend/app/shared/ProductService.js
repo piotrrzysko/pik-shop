@@ -1,14 +1,19 @@
 angular
     .module('ProductService', ['restangular'])
-    .factory('Product', ['$q', '$http', 'Restangular', ProductService]);
+    .factory('Product', ['Restangular', 'File', ProductService]);
 
-function ProductService($q, $http, Restangular) {
+function ProductService(Restangular, File) {
 
     return {
         getProducts: getProducts,
         addProduct: addProduct,
-        deleteProduct: deleteProduct
+        deleteProduct: deleteProduct,
+        getProduct: getProduct
     };
+
+    function getProduct(productId) {
+        return Restangular.one('products', productId).get();
+    }
 
     function getProducts(params) {
         var sortingCol = Object.keys(params.sorting())[0];
@@ -26,16 +31,27 @@ function ProductService($q, $http, Restangular) {
         return Restangular.one('products').get(request);
     }
 
-    function addProduct(productData) {
+    function addProduct(productData, images) {
+        var blobFiles = File.convertFilesToBlob(images);
+
+        var fd = new FormData();
+        (blobFiles || []).forEach(function(file) {
+            fd.append('images', file);
+        });
+        fd.append('productData', new Blob([JSON.stringify(productData)], {
+            type: "application/json"
+        }));
+
         return Restangular.all('products')
-            .post(productData);
+            .withHttpConfig({
+                transformRequest: angular.identity
+            })
+            .customPOST(fd, undefined, undefined, {
+                'Content-Type': undefined
+            });
     }
 
     function deleteProduct(product) {
         return Restangular.one("products", product.id).remove();
-
-        // var url = 'products' + product.id;
-        // return Restangular.all(url)
-        //     .delete();
     }
 }

@@ -5,6 +5,7 @@ angular
         'app.routes',
         'app.product',
         'app.home',
+        'app.cart',
         'app.signIn',
         'app.signUp',
         'app.profile',
@@ -14,8 +15,12 @@ angular
         'angular-advanced-searchbox',
         'restangular',
         'toastr',
-        'ProductService'
+        'ngFileUpload',
+        'ProductService',
+        'FileService',
+        'CartService',
+        'filters'
     ])
     .config(['RestangularProvider', function (RestangularProvider) {
-        RestangularProvider.setBaseUrl(ENV.apiURL);
+        RestangularProvider.setBaseUrl(ENV.apiURL).setDefaultHttpFields({withCredentials: true});
     }]);

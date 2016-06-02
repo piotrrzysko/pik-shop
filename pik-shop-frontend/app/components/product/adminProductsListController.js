@@ -6,13 +6,16 @@
         .controller('AdminProductsListController', ['NgTableParams', '$scope', 'Product', '$state', AdminProductsListController]);
 
     function AdminProductsListController(NgTableParams, $scope, Product, $state) {
-        var product = this;
+        $scope.viewProduct = function(product) {
+            $state.go('products.view-product', {productId: product.id});
+        };
 
         $scope.getProductStates = function () {
             return $scope.stateIdToName;
         };
 
-        $scope.deleteProduct = function (product) {
+        $scope.deleteProduct = function (product, $event) {
+            $event.stopPropagation();
             Product.deleteProduct(product).then(function () {
                 $state.go(".", {}, {reload: true});
             });

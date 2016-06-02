@@ -42,7 +42,7 @@ function HomeController($scope, $uibModal) {
     $scope.addSlide = function (i) {
         var newWidth = 600 + slides.length + 1;
         slides.push({
-            image: 'assets/img/img'+i+'.png',
+            image: 'assets/img/img' + i + '.png',
             text: ['opis produktu 1', 'Jeszcze ciekawszy opis produktu 2', 'No tego opisu to juz nic nie przebije! Opis produktu 3', 'I love that'][slides.length % 4],
             id: currIndex++
         });
@@ -50,17 +50,16 @@ function HomeController($scope, $uibModal) {
 
 
     for (var i = 0; i < 3; i++) {
-        $scope.addSlide(i+1);
+        $scope.addSlide(i + 1);
     }
 
 
-
     $scope.availableSearchParams = [
-        { key: "name", name: "nazwa", placeholder: "Nazwa..." },
-        { key: "price", name: "cena", placeholder: "Cena..." },
-        { key: "quantity", name: "ilość", placeholder: "Ilość..." },
+        {key: "name", name: "nazwa", placeholder: "Nazwa..."},
+        {key: "price", name: "cena", placeholder: "Cena..."},
+        {key: "quantity", name: "ilość", placeholder: "Ilość..."},
     ];
 
-    $scope.searchParams ={};
+    $scope.searchParams = {};
 
 }

@@ -29,6 +29,8 @@ public class ProductServiceTest {
     private ProductSpecification productSpecification;
     @InjectMocks
     private ProductService productService;
+    @Mock
+    private FileService fileService;
 
     @Test
     public void should_return_empty_page() throws Exception {
@@ -47,7 +49,7 @@ public class ProductServiceTest {
     public void stores_product() throws Exception {
         ProductData productData = new ProductData("Test Product");
 
-        productService.addProduct(productData);
+        productService.addProduct(productData, Collections.emptyList());
 
         ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
         verify(productRepository).save(argument.capture());

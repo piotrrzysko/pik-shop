@@ -1,9 +1,12 @@
 package pl.elka.pw.pik.shop.domain.model;
 
+import org.springframework.beans.factory.annotation.Value;
 import pl.elka.pw.pik.shop.dto.ProductData;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Optional;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -15,11 +18,16 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductState productState;
     private Long availableCount;
+    @Column(length = 1023)
     private String description;
-    @OneToOne
-    private User user;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "product_image",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "file_id")})
+    private Set<File> images;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(ProductData productData) {
         name = productData.getName();
@@ -55,6 +63,23 @@ public class Product {
 
     public String getDescription() {
         return description;
+    }
+
+    public Set<File> getImages() {
+        return images;
+    }
+
+    public String getMainImageFileName() {
+        if (images != null && !images.isEmpty()) {
+            Optional<File> image = images.stream().findFirst();
+            if (image.isPresent())
+                return image.get().getFileName();
+        }
+        return "";
+    }
+
+    public void setImages(Set<File> images) {
+        this.images = images;
     }
 
     public enum ProductState {

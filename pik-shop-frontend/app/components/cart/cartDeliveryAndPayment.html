@@ -1,0 +1,129 @@
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a>Twój koszyk</a></li>
+        <li role="presentation" class="active"><a>Dane dostawy i płatności</a></li>
+        <li role="presentation"><a>Podsumowanie</a></li>
+    </ul>
+</div>
+<form ng-submit="updateOrder()" name="deliveryAndPaymentForm" class="form-horizontal">
+    <div class="row">
+        <div class="col-sm-12 cart-form-section">
+            <h4>1. Wybierz sposób dostawy</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-6">
+                <select class="form-control" ng-model="order.deliveryFormType.id" ng-change="deliveryFormTypeChange()"
+                        id="selectDeliveryType" required>
+                    <option value="" disabled selected class="select-placeholder">Wybierz sposób dostawy</option>
+                    <option ng-repeat="option in deliveryFormTypes" value="{{option.id}}">{{option.name}} - {{option.deliveryValue | currency: 'PLN '}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 cart-form-section">
+            <h4>2. Wybierz dane dostawy</h4>
+        </div>
+        <div class="form-group">
+            <label for="firstName" class="col-sm-2 control-label">Imię
+                <span class="required-star">*</span>
+            </label>
+            <div class="col-sm-6">
+                <input ng-model="order.deliveryAddress.firstName" type="text" class="form-control" id="firstName"
+                       maxlength="50" placeholder="Imię" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="col-sm-2 control-label">Nazwisko
+                <span class="required-star">*</span>
+            </label>
+            <div class="col-sm-6">
+                <input ng-model="order.deliveryAddress.lastName" type="text" class="form-control" id="lastName"
+                       maxlength="50" placeholder="Nazwisko" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="streetAndHouseNumber" class="col-sm-2 control-label">Ulica i numer
+                <span class="required-star">*</span>
+            </label>
+            <div id="streetAndHouseNumber">
+                <div class="col-sm-4">
+                    <input ng-model="order.deliveryAddress.street" type="text" class="form-control" maxlength="50"
+                           placeholder="Ulica" required>
+                </div>
+                <div class="col-sm-2">
+                    <input ng-model="order.deliveryAddress.houseNumber" type="text" class="form-control" maxlength="50"
+                           placeholder="Numer domu" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="postalCode" class="col-sm-2 control-label">Kod pocztowy
+                <span class="required-star">*</span>
+            </label>
+            <div class="col-sm-6">
+                <input ng-model="order.deliveryAddress.postalCode" type="text" class="form-control" id="postalCode"
+                       maxlength="50" placeholder="Kod pocztowy" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="city" class="col-sm-2 control-label">Miasto
+                <span class="required-star">*</span>
+            </label>
+            <div class="col-sm-6">
+                <input ng-model="order.deliveryAddress.city" type="text" class="form-control" id="city" maxlength="50"
+                       placeholder="Miasto" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber" class="col-sm-2 control-label">Numer telefonu
+                <span class="required-star">*</span>
+            </label>
+            <div class="col-sm-6">
+                <input ng-model="order.deliveryAddress.phoneNumber" type="text" class="form-control" id="phoneNumber"
+                       maxlength="50" placeholder="Numer telefonu" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 cart-form-section">
+            <h4>3. Wybierz formę płatności</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-6">
+                <select class="form-control" ng-model="order.paymentType.id" id="selectPaymentType" required>
+                    <option value="" disabled selected class="select-placeholder">Wybierz formę płatności</option>
+                    <option ng-repeat="option in paymentTypes" value="{{option.id}}">{{option.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row cart-form-section">
+        <div class="col-sm-9">
+            <span class="cart-summary-text">Razem do zapłaty</span>
+        </div>
+        <div class="col-sm-3">
+            <div class="cart-summary-total">
+                {{(order.deliveryFormType.deliveryValue + order.totalValueWithoutDelivery) | currency: 'PLN '}}
+            </div>
+            <div>
+                <span>w tym koszty dostawy: </span>
+                <span class="cart-summary-delivery">{{order.deliveryFormType.deliveryValue | currency: 'PLN '}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row cart-buttons-row cart-form-section">
+        <div class="pull-left">
+            <button ui-sref="^.items-list" class="btn btn-success btn-lg">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span>Wróć do koszyka</span>
+            </button>
+        </div>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-success btn-lg" ng-disabled="nextStepButtonDisabled">
+                <span>Dalej</span>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        </div>
+    </div>
+</form>
