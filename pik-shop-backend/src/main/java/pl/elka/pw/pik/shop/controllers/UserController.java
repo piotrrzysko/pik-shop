@@ -11,7 +11,7 @@ import pl.elka.pw.pik.shop.services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/public/users")
 public class UserController {
 
     @Autowired

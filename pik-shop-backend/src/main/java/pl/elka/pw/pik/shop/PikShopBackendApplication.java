@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(value = {"pl.elka.pw.pik.shop.domain.repository"})
-@EntityScan(value = {"pl.elka.pw.pik.shop.domain"})
-@ComponentScan(value = {"pl.elka.pw.pik.shop"})
+@EnableJpaRepositories(value = {"pl.elka.pw.pik.shop"})
+@EntityScan(value = {"pl.elka.pw.pik.shop"})
+@ComponentScan(value = {"pl.elka.pw.pik"})
 public class PikShopBackendApplication {
 
     public static void main(String[] args) {
