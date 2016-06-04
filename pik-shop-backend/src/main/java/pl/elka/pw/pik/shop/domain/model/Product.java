@@ -78,6 +78,26 @@ public class Product {
         return "";
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setProductState(ProductState productState) {
+        this.productState = productState;
+    }
+
+    public void setAvailableCount(Long availableCount) {
+        this.availableCount = availableCount;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setImages(Set<File> images) {
         this.images = images;
     }
