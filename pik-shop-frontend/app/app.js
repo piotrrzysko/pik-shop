@@ -9,6 +9,7 @@ angular
         'app.signIn',
         'app.signUp',
         'app.profile',
+        'app.admin-profile',
         'app.profile.dashboard',
         'ui.bootstrap',
         'angular-carousel',
