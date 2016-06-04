@@ -8,31 +8,20 @@
                 <span class="card-title-desc">
                     Witaj w PIK shop
                 </span>
-                <form class="form-floating" id="login_user_form_id" name="loginUserForm" novalidate="novalidate"
-                      ng-submit="login()">
+                <form class="form-floating" id="signInForm" name="loginUserForm" ng-submit="signIn()">
                     <div class="form-group" ng-class="{'filled': credentials.email}">
                         <label for="inputEmail" class="control-label">Email</label>
-                        <input type="text" class="form-control" id="inputEmail" ng-model="credentials.email">
+                        <input type="text" class="form-control" id="inputEmail" ng-model="credentials.email" required>
                     </div>
                     <div class="form-group" ng-class="{'filled': credentials.password}">
                         <label for="inputPassword" class="control-label">Hasło</label>
-                        <input type="password" class="form-control" id="inputPassword" ng-model="credentials.password">
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="remember"> Zapamiętaj mnie
-                            </label>
-                        </div>
+                        <input type="password" class="form-control" id="inputPassword" ng-model="credentials.password" required>
                     </div>
                 </form>
             </div>
             <div>
                 <div class="pull-right">
-                    <button ui-sref=".forgotPassword" type="submit" class="btn btn-primary black-text">
-                        Nie pamiętam hasła
-                    </button>
-                    <button form="login_user_form_id" type="submit" class="btn btn-primary black-text">
+                    <button form="signInForm" type="submit" class="btn btn-primary black-text">
                         Zaloguj
                     </button>
                 </div>

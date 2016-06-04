@@ -2,30 +2,14 @@ angular
     .module('app.home', [
         'app.signUp'
     ])
-    .controller('HomeController', ['$scope', '$uibModal', HomeController]);
+    .controller('HomeController', ['$rootScope', '$scope', 'Restangular', 'toastr', HomeController]);
 
-function HomeController($scope, $uibModal) {
+function HomeController($rootScope, $scope, Restangular, toastr) {
     var home = this;
-    home.openRegisterModal = function () {
-        $uibModal.open({
-            templateUrl: '/app/components/signUp/signUp.html',
-            controller: 'SignUpController',
-            animation: 'am-fade-and-scale',
-            controllerAs: 'ctrl'
-        });
-        console.log("modalRegister");
-    };
 
-    home.openSignInModal = function () {
-        $uibModal.open({
-            templateUrl: '/app/components/signIn/signIn.html',
-            controller: 'SignUpController',
-            animation: 'am-fade-and-scale',
-            controllerAs: 'ctrl'
-        });
-        console.log("modalSignIn");
+    home.testUnAuthorized = function () {
+        Restangular.one('hello').get();
     };
-
 
     $scope.sportImages = [{
         id: 1,
@@ -61,5 +45,17 @@ function HomeController($scope, $uibModal) {
     ];
 
     $scope.searchParams = {};
+
+    $rootScope.$on('event:auth-loginRequired', function () {
+        toastr.error("Wymagane zalogowanie");
+    });
+
+    $rootScope.$on('event:auth-loginConfirmed', function () {
+        //TODO state go
+    });
+
+    $rootScope.$on('event:auth-logoutConfirmed', function () {
+        //TODO state go
+    });
 
 }
