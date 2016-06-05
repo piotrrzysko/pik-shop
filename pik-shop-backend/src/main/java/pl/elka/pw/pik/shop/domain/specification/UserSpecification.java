@@ -18,8 +18,10 @@ public class UserSpecification {
     public Specification<User> buildFrom(UsersSearchParams searchParams) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (searchParams.getName() != null)
-                predicates.add(cb.like(root.<String>get("name"), "%" + searchParams.getName() + "%"));
+            if (searchParams.getFirst_name() != null)
+                predicates.add(cb.like(root.<String>get("firstName"), "%" + searchParams.getFirst_name() + "%"));
+            if (searchParams.getLast_name() != null)
+                predicates.add(cb.like(root.<String>get("lastName"), "%" + searchParams.getLast_name() + "%"));
             if (searchParams.getEmail() != null)
                 predicates.add(cb.like(root.<String>get("email"), "%" + searchParams.getEmail() + "%"));
             if (searchParams.getId() != null)

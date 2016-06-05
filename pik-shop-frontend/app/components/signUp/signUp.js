@@ -1,8 +1,11 @@
-angular.
-module('app.signUp', [
+angular.module('app.signUp', [
     'ui.router'
-]).controller('SignUpController',['$scope', SignUpController]);
+]).controller('SignUpController', ['$scope', 'SignUpService', SignUpController]);
 
-function SignUpController($scope) {
-    console.log("hello1");
+function SignUpController($scope, SignUpService) {
+    $scope.signUpRequest = {};
+
+    $scope.sendSignUpRequest = function () {
+        SignUpService.signUpNewUser($scope.signUpRequest);
+    }
 }

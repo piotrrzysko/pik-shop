@@ -19,7 +19,8 @@ function UsersService(Restangular){
             page: params.page() - 1,
             size: params.count(),
             id: params.filter().id,
-            name: params.filter().name,
+            first_name: params.filter().first_name,
+            last_name: params.filter().last_name,
             email: params.filter().email,
             sortCol: sortingCol,
             direction: params.sorting()[sortingCol]
@@ -28,18 +29,7 @@ function UsersService(Restangular){
         return Restangular.one('users').get(request);
     }
 
-    function getUserOrders(params, userId) {
-        var sortingCol = Object.keys(params.sorting())[0];
-        var request = {
-            page: params.page() - 1,
-            size: params.count(),
-            id: params.filter().id,
-            delivery_street: params.filter().street,
-            date: params.filter().date,
-            sortCol: sortingCol,
-            direction: params.sorting()[sortingCol]
-        };
-
-        return Restangular.one('users/'+userId+'/orders').get(request);
+    function getUserOrders(userId) {
+        return Restangular.one('users/'+userId+'/orders').get();
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import pl.elka.pw.pik.shop.domain.model.User;
+import pl.elka.pw.pik.shop.domain.model.orders.Order;
 
 import java.util.List;
 

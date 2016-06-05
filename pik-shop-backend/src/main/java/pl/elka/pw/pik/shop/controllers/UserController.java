@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pl.elka.pw.pik.shop.domain.model.User;
+import pl.elka.pw.pik.shop.dto.SignUpParams;
 import pl.elka.pw.pik.shop.services.LoggedUserContextService;
 import pl.elka.pw.pik.shop.domain.model.orders.Order;
 import pl.elka.pw.pik.shop.dto.OrderSearchParams;
@@ -31,9 +32,14 @@ public class UserController {
         return userService.findUsersPage(searchParams);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User createUser(SignUpParams signUpParams){
+        return userService.createUser(signUpParams);
+    }
+
     @RequestMapping(value = "/{userID}/orders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Page<Order> getUserOrders(@PathVariable("userID") Long userId, OrderSearchParams searchParams){
-        return userService.findOrdersPage(searchParams, userId);
+    public List<Order> getUserOrders(@PathVariable("userID") Long userId, OrderSearchParams searchParams){
+        return userService.findUserOrders(userId);
     }
 
     @RequestMapping(value = "/logged", method = RequestMethod.GET)
