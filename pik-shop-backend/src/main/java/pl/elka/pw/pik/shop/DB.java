@@ -29,15 +29,15 @@ public class DB implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     private void insertTestProducts() {
-        LongStream.range(1, 10).forEach(value ->
-                productRepository.save(createTestProduct(value))
-        );
+        LongStream
+                .range(1, 10)
+                .forEach(value -> productRepository.save(createTestProduct(value)));
     }
 
     private void insertTestUsers() {
-        LongStream.range(1, 10).forEach(value ->
-                userRepository.save(createTestUser(value))
-        );
+        LongStream
+                .range(1, 10)
+                .forEach(value -> userRepository.save(createTestUser(value)));
     }
 
     private Product createTestProduct(Long id) {
@@ -53,8 +53,10 @@ public class DB implements ApplicationListener<ContextRefreshedEvent> {
     private User createTestUser(Long no) {
         User user = new User();
         user.email = "test" + no + "@pik.pl";
-        user.firstName = "First" + no;
-        user.lastName = "Last" + no;
+        user.firstName = "First " + no;
+        user.lastName = "Last " + no;
+        user.phoneNumber = "62683412" + no;
+        user.address = "Warszawa " + no;
         user.identities.add(new Identity(user, "password"));
         return user;
     }

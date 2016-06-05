@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.elka.pw.pik.shop.security.filter.AuthenticationFilter;
 import pl.elka.pw.pik.shop.security.filter.LoginFilter;
+import pl.elka.pw.pik.shop.security.service.LogoutHandler;
 import pl.elka.pw.pik.shop.security.service.TokenAuthenticationService;
 import pl.elka.pw.pik.shop.security.service.UserDetailsService;
 
@@ -50,6 +51,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                 .and()
                 .logout()
+                .addLogoutHandler(new LogoutHandler(tokenAuthenticationService))
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
                 .addFilterBefore(new LoginFilter("/login", tokenAuthenticationService, userDetailsService,
                         authenticationManager()), UsernamePasswordAuthenticationFilter.class)

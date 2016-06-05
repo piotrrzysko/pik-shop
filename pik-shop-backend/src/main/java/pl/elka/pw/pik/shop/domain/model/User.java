@@ -24,6 +24,8 @@ public class User {
     public String email;
     public String firstName;
     public String lastName;
+    public String phoneNumber;
+    public String address;
     public UserType userType;
 
     @JsonIgnore
