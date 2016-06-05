@@ -5,7 +5,8 @@ angular
 function UsersService(Restangular){
 
     return {
-        getUsersList: getUsersList
+        getUsersList: getUsersList,
+        getUserOrders: getUserOrders
     };
 
     // function getUsersList() {
@@ -25,5 +26,20 @@ function UsersService(Restangular){
         };
 
         return Restangular.one('users').get(request);
+    }
+
+    function getUserOrders(params, userId) {
+        var sortingCol = Object.keys(params.sorting())[0];
+        var request = {
+            page: params.page() - 1,
+            size: params.count(),
+            id: params.filter().id,
+            delivery_street: params.filter().street,
+            date: params.filter().date,
+            sortCol: sortingCol,
+            direction: params.sorting()[sortingCol]
+        };
+
+        return Restangular.one('users/'+userId+'/orders').get(request);
     }
 }

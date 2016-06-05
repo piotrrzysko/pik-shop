@@ -1,1 +1,10 @@
-TODO
+<div class="table-header">
+    <span class="table-header-title">Historia zamówień</span>
+</div>
+<table ng-table="historyTableParams" show-filter="true" class="table table-bordered table-striped">
+    <tr ng-repeat="order in $data track by user.id" ng-click="viewProduct(order)" class="clickable-row">
+        <td title="'Id'" filter="{id: 'number'}" sortable="'id'" class="table-cell">{{order.id}}</td>
+        <td title="'Data'" filter="{date: 'text'}" sortable="'date'" class="table-cell">{{order.date}}</td>
+        <td title="'Ulica'" filter="{street: 'text'}" sortable="'street'" class="table-cell">{{order.street}}</td>
+    </tr>
+</table>

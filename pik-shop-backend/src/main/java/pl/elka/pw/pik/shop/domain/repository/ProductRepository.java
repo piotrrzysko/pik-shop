@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import pl.elka.pw.pik.shop.domain.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
-
     Page<Product> findAll(Specification<Product> spec, Pageable pageable);
 
 }
