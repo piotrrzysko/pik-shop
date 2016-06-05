@@ -17,10 +17,20 @@ angular.module('app.profile', [
                     controller: 'ProfileDashboardCtrl',
                     templateUrl: '/app/components/profile/dashboard/dashboard.html'
                 }
+            },
+            resolve: {
+                currentUser: ['UserStorageService', function (UserStorageService) {
+                    if (UserStorageService.hasLoginCookie()) {
+                        return UserStorageService.fetchLoggedUser();
+                    }
+                    return UserStorageService.getCurrentUser();
+                }]
             }
         });
     }])
-    .controller('ProfileCtrl', ['$scope', '$state', function ($scope, $state) {
+    .controller('ProfileCtrl', ['$scope', '$state', 'currentUser', function ($scope, $state, currentUser) {
+
+        $scope.currentUser = currentUser;
         $scope.isProfileDashboardState = function () {
             return $state.current.name === 'profile';
         }

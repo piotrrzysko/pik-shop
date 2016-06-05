@@ -2,13 +2,37 @@ angular
     .module('app.home', [
         'app.signUp'
     ])
-    .controller('HomeController', ['$rootScope', '$scope', 'Restangular', 'toastr', HomeController]);
+    .config(['$stateProvider', function config($stateProvider) {
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: '/app/components/home/home.html',
+                controller: 'HomeController',
+                resolve: {
+                    currentUser: ['UserStorageService', function (UserStorageService) {
+                        if (UserStorageService.hasLoginCookie()) {
+                            return UserStorageService.fetchLoggedUser();
+                        }
+                        return UserStorageService.getCurrentUser();
+                    }]
+                }
+            });
+    }])
+    .controller('HomeController', ['$rootScope', '$state', '$scope', 'Restangular', 'toastr', 'UserStorageService', 'AuthenticationService', HomeController]);
 
-function HomeController($rootScope, $scope, Restangular, toastr) {
+function HomeController($rootScope, $state, $scope, Restangular, toastr, UserStorageService, AuthenticationService) {
     var home = this;
 
     home.testUnAuthorized = function () {
         Restangular.one('hello').get();
+    };
+
+    home.isSignedIn = function () {
+        return UserStorageService.isSignedIn();
+    };
+
+    home.logout = function () {
+        return AuthenticationService.logout();
     };
 
     $scope.sportImages = [{
@@ -51,11 +75,11 @@ function HomeController($rootScope, $scope, Restangular, toastr) {
     });
 
     $rootScope.$on('event:auth-loginConfirmed', function () {
-        //TODO state go
+        $state.go('profile');
     });
 
     $rootScope.$on('event:auth-logoutConfirmed', function () {
-        //TODO state go
+        $state.go('home');
     });
 
 }

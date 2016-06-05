@@ -6,7 +6,7 @@ angular.module('CookieStorageService', [
         var headers = {'X-Auth-Token': getXAuthToken()};
 
         function saveXAuthToken(xAuthToken) {
-            ipCookie(X_AUTH_TOKEN, xAuthToken, {path: "/"});
+            ipCookie(X_AUTH_TOKEN, xAuthToken);
         }
 
         function getXAuthToken() {

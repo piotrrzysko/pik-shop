@@ -35,4 +35,7 @@ angular
         RestangularProvider
             .setBaseUrl(ENV.apiURL)
             .setDefaultHttpFields({withCredentials: true});
+    }])
+    .run(['CookieStorageService', 'Restangular', function run(CookieStorageService, Restangular) {
+        Restangular.setDefaultHeaders(CookieStorageService.getAuthHeaders());
     }]);

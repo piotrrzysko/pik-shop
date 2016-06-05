@@ -1,10 +1,13 @@
 angular.module('UserStorageService', [])
 
-    .factory('UserStorageService', [function () {
+    .factory('UserStorageService', ['$q', 'Restangular', 'CookieStorageService', function ($q, Restangular, CookieStorageService) {
 
-        var currentUser;
+        var currentUser = {};
 
         return {
+            hasLoginCookie: function () {
+                return CookieStorageService.getAuthHeaders()['X-Auth-Token'];
+            },
             setLoggedUser: function (user) {
                 currentUser = user;
             },
@@ -13,6 +16,21 @@ angular.module('UserStorageService', [])
             },
             getCurrentUser: function () {
                 return currentUser;
+            },
+            fetchLoggedUser: function () {
+                var deferred = $q.defer();
+                var that = this;
+                Restangular.one('/users/logged').get()
+                    .then(function (user) {
+                        that.setLoggedUser(user);
+                        deferred.resolve(user);
+                    }, function () {
+                        deferred.reject();
+                    });
+                return deferred.promise;
+            },
+            isSignedIn: function () {
+                return currentUser.id;
             }
         };
     }]);

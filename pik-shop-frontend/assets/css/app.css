@@ -415,3 +415,8 @@ hr {
     color: #999;
     font-weight: 600;
 }
+
+.no-animate {
+    -webkit-transition: none !important;
+    transition: none !important;
+}

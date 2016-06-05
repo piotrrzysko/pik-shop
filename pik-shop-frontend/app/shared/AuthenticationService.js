@@ -8,7 +8,8 @@ angular
 function AuthenticationService(Restangular, CookieStorageService, $http, $q) {
 
     return {
-        signIn: signIn
+        signIn: signIn,
+        logout: logout
 
     };
     function getToken(username, password) {
@@ -21,7 +22,6 @@ function AuthenticationService(Restangular, CookieStorageService, $http, $q) {
     }
 
     function signIn(userName, password) {
-
         var defered = $q.defer();
         getToken(userName, password)
             .success(function (response) {
@@ -33,5 +33,14 @@ function AuthenticationService(Restangular, CookieStorageService, $http, $q) {
                 defered.reject(response);
             });
         return defered.promise;
+    }
+
+    function logout() {
+        return Restangular.one('logout').get()
+            .then(function (response) {
+                UserStorageService.clearLoggedUser();
+                CookieStorageService.removeXAuthToken();
+                AppNotificationsService.logoutConfirmed();
+            });
     }
 }
