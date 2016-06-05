@@ -2,30 +2,38 @@ angular
     .module('app.home', [
         'app.signUp'
     ])
-    .controller('HomeController', ['$scope', '$uibModal', HomeController]);
+    .config(['$stateProvider', function config($stateProvider) {
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: '/app/components/home/home.html',
+                controller: 'HomeController',
+                resolve: {
+                    currentUser: ['UserStorageService', function (UserStorageService) {
+                        if (UserStorageService.hasLoginCookie()) {
+                            return UserStorageService.fetchLoggedUser();
+                        }
+                        return UserStorageService.getCurrentUser();
+                    }]
+                }
+            });
+    }])
+    .controller('HomeController', ['$rootScope', '$state', '$scope', 'Restangular', 'toastr', 'UserStorageService', 'AuthenticationService', HomeController]);
 
-function HomeController($scope, $uibModal) {
+function HomeController($rootScope, $state, $scope, Restangular, toastr, UserStorageService, AuthenticationService) {
     var home = this;
-    home.openRegisterModal = function () {
-        $uibModal.open({
-            templateUrl: '/app/components/signUp/signUp.html',
-            controller: 'SignUpController',
-            animation: 'am-fade-and-scale',
-            controllerAs: 'ctrl'
-        });
-        console.log("modalRegister");
+
+    home.testUnAuthorized = function () {
+        Restangular.one('hello').get();
     };
 
-    home.openSignInModal = function () {
-        $uibModal.open({
-            templateUrl: '/app/components/signIn/signIn.html',
-            controller: 'SignUpController',
-            animation: 'am-fade-and-scale',
-            controllerAs: 'ctrl'
-        });
-        console.log("modalSignIn");
+    home.isSignedIn = function () {
+        return UserStorageService.isSignedIn();
     };
 
+    home.logout = function () {
+        return AuthenticationService.logout();
+    };
 
     $scope.sportImages = [{
         id: 1,
@@ -61,5 +69,17 @@ function HomeController($scope, $uibModal) {
     ];
 
     $scope.searchParams = {};
+
+    $rootScope.$on('event:auth-loginRequired', function () {
+        toastr.error("Wymagane zalogowanie");
+    });
+
+    $rootScope.$on('event:auth-loginConfirmed', function () {
+        $state.go('profile');
+    });
+
+    $rootScope.$on('event:auth-logoutConfirmed', function () {
+        $state.go('home');
+    });
 
 }

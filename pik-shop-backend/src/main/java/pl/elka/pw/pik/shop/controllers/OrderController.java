@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/orders"})
+@RequestMapping({"/public/orders"})
 public class OrderController {
     private CartService cartService;
 

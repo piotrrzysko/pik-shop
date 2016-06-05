@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pl.elka.pw.pik.shop.domain.model.User;
+import pl.elka.pw.pik.shop.services.LoggedUserContextService;
 import pl.elka.pw.pik.shop.services.UserService;
 
 import java.util.List;
@@ -17,8 +18,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    LoggedUserContextService loggedUserContextService;
+
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getUsers() {
         return userService.getUsers();
+    }
+
+    @RequestMapping(value = "/logged", method = RequestMethod.GET)
+    public User getLoggedUser() {
+        return userService.getUser(loggedUserContextService.getUserIdFromSecurityContext());
     }
 }

@@ -12,7 +12,7 @@ function ProductService(Restangular, File) {
     };
 
     function getProduct(productId) {
-        return Restangular.one('products', productId).get();
+        return Restangular.one('public/products', productId).get();
     }
 
     function getProducts(params) {
@@ -28,7 +28,7 @@ function ProductService(Restangular, File) {
             direction: params.sorting()[sortingCol]
         };
 
-        return Restangular.one('products').get(request);
+        return Restangular.one('public/products').get(request);
     }
 
     function addProduct(productData, images) {
@@ -42,7 +42,7 @@ function ProductService(Restangular, File) {
             type: "application/json"
         }));
 
-        return Restangular.all('products')
+        return Restangular.all('public/products')
             .withHttpConfig({
                 transformRequest: angular.identity
             })
@@ -52,6 +52,6 @@ function ProductService(Restangular, File) {
     }
 
     function deleteProduct(product) {
-        return Restangular.one("products", product.id).remove();
+        return Restangular.one("public/products", product.id).remove();
     }
 }

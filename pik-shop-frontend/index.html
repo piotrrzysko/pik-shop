@@ -32,11 +32,13 @@
           </a>
         </div>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right no-animate">
           <li><a ui-sref="admin.products.products-list">Produkty</a></li>
-          <li><a ng-click="home.openSignInModal()">Zaloguj</a></li>
-          <li><a ng-click="home.openRegisterModal()">Zarejestruj</a></li>
-          <li><a ui-sref="profile">Moje konto</a></li>
+          <li class="no-animate" ng-if="!home.isSignedIn()"><a ui-sref="signIn">Zaloguj</a></li>
+          <li class="no-animate" ng-if="!home.isSignedIn()"><a ui-sref="signUp">Zarejestruj</a></li>
+          <li class="no-animate" ng-if="home.isSignedIn()" ng-click="home.logout()"><a>Wyloguj</a></li>
+          <li class="no-animate"><a ng-click="home.testUnAuthorized()">UnAuth</a></li>
+          <li class="no-animate" ng-if="home.isSignedIn()"><a ui-sref="profile">Moje konto</a></li>
         </ul>
       </div>
     </nav>
@@ -65,6 +67,7 @@
   <script src="bower_components/angular-touch/angular-touch.min.js"></script>
   <script src="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.js"></script>
   <script src="bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox-tpls.js"></script>
+  <script src="bower_components/angular-cookie/angular-cookie.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
   <script src="app/env.js"></script>
   <script src="app/app.js"></script>
@@ -90,6 +93,11 @@
   <script src="app/shared/FileService.js"></script>
   <script src="app/shared/CartService.js"></script>
   <script src="app/shared/filters.js"></script>
+  <script src="app/shared/AuthenticationService.js"></script>
+  <script src="app/shared/CookieStorageService.js"></script>
+  <script src="app/shared/AppNotificationsService.js"></script>
+  <script src="app/shared/HttpInterceptor.js"></script>
+  <script src="app/shared/UserStorageService.js"></script>
   <script src="app/shared/utils/confirmPassword.js"></script>
 </body>
 

@@ -19,8 +19,23 @@ angular
         'ProductService',
         'FileService',
         'CartService',
-        'filters'
+        'filters',
+        'AuthenticationService',
+        'CookieStorageService',
+        'AppNotificationsService',
+        'HttpInterceptor',
+        'UserStorageService',
+        'ipCookie'
     ])
-    .config(['RestangularProvider', function (RestangularProvider) {
-        RestangularProvider.setBaseUrl(ENV.apiURL).setDefaultHttpFields({withCredentials: true});
+    .config(['$httpProvider', 'toastrConfig', 'RestangularProvider', function ($httpProvider, toastrConfig, RestangularProvider) {
+        $httpProvider.interceptors.push('HttpInterceptor');
+        angular.extend(toastrConfig, {
+            preventOpenDuplicates: true
+        });
+        RestangularProvider
+            .setBaseUrl(ENV.apiURL)
+            .setDefaultHttpFields({withCredentials: true});
+    }])
+    .run(['CookieStorageService', 'Restangular', function run(CookieStorageService, Restangular) {
+        Restangular.setDefaultHeaders(CookieStorageService.getAuthHeaders());
     }]);

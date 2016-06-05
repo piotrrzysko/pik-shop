@@ -19,30 +19,30 @@ function CartService(Restangular) {
             productId: productId,
             amount: amount
         };
-        return Restangular.all('orders').customPOST(orderItem);
+        return Restangular.all('public/orders').customPOST(orderItem);
     }
 
     function getOrder() {
-        return Restangular.one('orders').get();
+        return Restangular.one('public/orders').get();
     }
 
     function deleteOrderItem(itemId) {
-        return Restangular.one('orders', itemId).remove();
+        return Restangular.one('public/orders', itemId).remove();
     }
 
     function updateOrder(order) {
-        return Restangular.all('orders/update').post(order);
+        return Restangular.all('public/orders/update').post(order);
     }
 
     function confirmOrder() {
-        return Restangular.all('orders/setStatusConfirmed').post();
+        return Restangular.all('public/orders/setStatusConfirmed').post();
     }
 
     function getDeliveryFormTypes() {
-        return Restangular.one('orders/deliveryFormTypes').get();
+        return Restangular.one('public/orders/deliveryFormTypes').get();
     }
 
     function getPaymentTypes() {
-        return Restangular.one('orders/paymentTypes').get();
+        return Restangular.one('public/orders/paymentTypes').get();
     }
 }
