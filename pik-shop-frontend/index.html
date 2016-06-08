@@ -38,7 +38,8 @@
           <li class="no-animate" ng-if="!home.isSignedIn()"><a ui-sref="signUp">Zarejestruj</a></li>
           <li class="no-animate" ng-if="home.isSignedIn()" ng-click="home.logout()"><a>Wyloguj</a></li>
           <li class="no-animate"><a ng-click="home.testUnAuthorized()">UnAuth</a></li>
-          <li class="no-animate" ng-if="home.isSignedIn() && home.isUser()"><a ui-sref="profile">Moje konto</a></li>
+          <li class="no-animate" ng-if="home.isSignedIn()"><a ui-sref="profile">Moje konto</a></li>
+          <li><a ui-sref="admin-profile">Administrator</a></li>
         </ul>
       </div>
     </nav>
@@ -82,6 +83,11 @@
   <script src="app/components/cart/cartSummaryController.js"></script>
   <script src="app/components/signIn/signIn.js"></script>
   <script src="app/components/signUp/signUp.js"></script>
+  <script src="app/components/admin-profile/admin_profile.js"></script>
+  <script src="app/components/admin-profile/dashboard/dashboard.js"></script>
+  <script src="app/components/admin-profile/userslist/userslist.js"></script>
+  <script src="app/shared/UsersService.js"></script>
+  <script src="app/shared/SignUpService.js"></script>
   <script src="app/components/profile/profile.js"></script>
   <script src="app/components/profile/dashboard/dashboard.js"></script>
   <script src="app/components/profile/history/history.js"></script>

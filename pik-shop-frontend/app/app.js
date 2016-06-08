@@ -9,10 +9,12 @@ angular
         'app.signIn',
         'app.signUp',
         'app.profile',
+        'app.admin-profile',
         'app.profile.dashboard',
         'ui.bootstrap',
         'angular-carousel',
         'angular-advanced-searchbox',
+        'angularUtils.directives.dirPagination',
         'restangular',
         'toastr',
         'ngFileUpload',
@@ -25,6 +27,7 @@ angular
         'AppNotificationsService',
         'HttpInterceptor',
         'UserStorageService',
+        'SignUpService',
         'ipCookie'
     ])
     .config(['$httpProvider', 'toastrConfig', 'RestangularProvider', function ($httpProvider, toastrConfig, RestangularProvider) {

@@ -1,5 +1,6 @@
 angular.module('app.profile.history', [
-        'ui.router'
+        'ui.router',
+        'UsersService'
     ])
     .config(['$stateProvider', function config($stateProvider) {
         $stateProvider.state('profile.history', {
@@ -9,9 +10,14 @@ angular.module('app.profile.history', [
                     controller: 'ProfileHistoryCtrl',
                     templateUrl: '/app/components/profile/history/history.html'
                 }
+            },
+            resolve: {
+                userOrders: ['UsersService', function (UsersService) {
+                    return UsersService.getUserOrders(1);
+                }]
             }
         });
     }])
-    .controller('ProfileHistoryCtrl', ['$scope', '$state', function ($scope, $state) {
-        console.log("ProfileHistoryCtrl");
+    .controller('ProfileHistoryCtrl', ['$scope', 'userOrders', function ($scope, userOrders) {
+        $scope.orders = userOrders;
     }]);

@@ -1,1 +1,92 @@
-TODO
+<div class="table-header">
+    <span class="table-header-title">Historia zamówień</span>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="well white no-p-b">
+            <form class="form-floating">
+                <legend><strong>
+                    <Szukaj></Szukaj>
+                </strong></legend>
+                <div class="row">
+                    <div class="col-md-3 p-h-10 center-block">
+                        <div class="form-group m-t-25">
+                            <label for="firstName" class="control-label">Id</label>
+                            <input type="text" class="form-control" id="firstName" ng-model="search.id">
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-h-10 center-block">
+                        <div class="form-group m-t-25">
+                            <label for="lastName" class="control-label">Data zamówienia</label>
+                            <input type="text" class="form-control" id="lastName"
+                                   ng-model="search.creationTime">
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-h-10 center-block">
+                        <div class="form-group m-t-25">
+                            <label for="delivryStreet" class="control-label">Ulica</label>
+                            <input type="text" class="form-control" id="delivryStreet"
+                                   ng-model="search.deliveryStreet">
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-h-10 center-block">
+                        <div class="form-group m-t-25">
+                            <label for="deliveryFormType" class="control-label">Typ zamówienia</label>
+                            <input type="text" class="form-control" id="deliveryFormType"
+                                   ng-model="search.deliveryFormType">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive well no-padding white no-margin">
+            <table class="table table-full scrollable-table" id="table-area-1">
+                <thead>
+                <tr>
+                    <th class="col-sm-3 text-center">Id</th>
+                    <th class="col-sm-3 text-center">Data zamówienia</th>
+                    <th class="col-sm-3 text-center">Ulica</th>
+                    <th class="col-sm-3 text-center">Typ zamówienia</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="4" class="no-padding">
+                        <div class="scrollable-list">
+                            <table class="table table-full">
+                                <tr class="row" dir-paginate="order in orders | filter:search | itemsPerPage: 10">
+                                    <td class="col-md-3 text-center">
+                                        <div class="form-group">
+                                            <span>{{order.id}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-sm-3 text-center">
+                                        <div class="form-group">
+                                            <span>{{order.creationTime}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-sm-3 text-center">
+                                        <div class="form-group">
+                                            <span>{{order.deliveryStreet}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-sm-3 text-center">
+                                        <div class="form-group">
+                                            <span>{{order.deliveryFormType}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <dir-pagination-controls style="float: right;"></dir-pagination-controls>
+    </div>
+</div>

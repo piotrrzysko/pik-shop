@@ -1,0 +1,11 @@
+<div class="table-header">
+    <span class="table-header-title">Lista użytkowników</span>
+</div>
+<table ng-table="userTableParams" show-filter="true" class="table table-bordered table-striped">
+    <tr ng-repeat="user in $data track by user.id" >
+        <td title="'Id'" filter="{id: 'number'}" sortable="'id'" class="table-cell">{{user.id}}</td>
+        <td title="'Imie'" filter="{first_name: 'text'}" sortable="'first_name'" class="table-cell">{{user.lastName}}</td>
+        <td title="'Nazwisko'" filter="{last_name: 'text'}" sortable="'last_name'" class="table-cell">{{user.firstName}}</td>
+        <td title="'email'" filter="{email: 'text'}" sortable="'email'" class="table-cell">{{user.email}}</td>
+    </tr>
+</table>

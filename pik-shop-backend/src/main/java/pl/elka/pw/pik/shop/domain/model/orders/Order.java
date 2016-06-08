@@ -1,5 +1,6 @@
 package pl.elka.pw.pik.shop.domain.model.orders;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.elka.pw.pik.shop.domain.model.Product;
 import pl.elka.pw.pik.shop.domain.model.User;
 import pl.elka.pw.pik.shop.dto.AddressData;
@@ -14,27 +15,42 @@ import java.util.Set;
 @Entity
 @Table(name = "order_entity")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonIgnore
     @ManyToOne
     private User user;
+
     @Column(nullable = false)
     private Date creationTime;
+
     @OneToMany(mappedBy = "order", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private Set<OrderItem> orderItems;
+
     @Enumerated(EnumType.STRING)
     private DeliveryFormType deliveryFormType;
+
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
     private String deliveryHouseNumber;
+
     private String deliveryPostalCode;
+
     private String deliveryStreet;
+
     private String deliveryCity;
+
     private String deliveryPhoneNumber;
+
     private String deliveryFirstName;
+
     private String deliveryLastName;
 
     public Order() {
