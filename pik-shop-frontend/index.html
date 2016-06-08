@@ -38,7 +38,7 @@
           <li class="no-animate" ng-if="!home.isSignedIn()"><a ui-sref="signUp">Zarejestruj</a></li>
           <li class="no-animate" ng-if="home.isSignedIn()" ng-click="home.logout()"><a>Wyloguj</a></li>
           <li class="no-animate"><a ng-click="home.testUnAuthorized()">UnAuth</a></li>
-          <li class="no-animate" ng-if="home.isSignedIn()"><a ui-sref="profile">Moje konto</a></li>
+          <li class="no-animate" ng-if="home.isSignedIn() && home.isUser()"><a ui-sref="profile">Moje konto</a></li>
         </ul>
       </div>
     </nav>

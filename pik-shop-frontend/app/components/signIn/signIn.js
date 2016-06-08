@@ -12,7 +12,6 @@ function SignInController($scope, AuthenticationService, toastr, UserStorageServ
         AuthenticationService.signIn($scope.credentials.email, $scope.credentials.password).then(function () {
             UserStorageService.fetchLoggedUser().then(function () {
                 AppNotificationsService.loginConfirmed();
-                toastr.success("Zalogowano")
             });
         }, function () {
             toastr.error("Niepoprawne dane logowania");
