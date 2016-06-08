@@ -31,6 +31,14 @@ function HomeController($rootScope, $state, $scope, Restangular, toastr, UserSto
         return UserStorageService.isSignedIn();
     };
 
+    home.isUser = function () {
+        return UserStorageService.isUser();
+    };
+
+    home.isAdmin = function () {
+        return UserStorageService.isAdmin();
+    };
+
     home.logout = function () {
         return AuthenticationService.logout();
     };
@@ -75,10 +83,12 @@ function HomeController($rootScope, $state, $scope, Restangular, toastr, UserSto
     });
 
     $rootScope.$on('event:auth-loginConfirmed', function () {
+        toastr.success("Zalogowano");
         $state.go('profile');
     });
 
     $rootScope.$on('event:auth-logoutConfirmed', function () {
+        toastr.success("Wylogowano");
         $state.go('home');
     });
 

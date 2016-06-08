@@ -12,7 +12,7 @@ angular.module('UserStorageService', [])
                 currentUser = user;
             },
             clearLoggedUser: function () {
-                currentUser = undefined;
+                currentUser = {};
             },
             getCurrentUser: function () {
                 return currentUser;
@@ -31,6 +31,12 @@ angular.module('UserStorageService', [])
             },
             isSignedIn: function () {
                 return currentUser.id;
+            },
+            isAdmin: function () {
+                return currentUser.userType === "ADMIN";
+            },
+            isUser: function () {
+                return currentUser.userType === "USER";
             }
         };
     }]);

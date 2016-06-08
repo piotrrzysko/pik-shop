@@ -3,9 +3,9 @@ angular
         'restangular',
         'CookieStorageService'
     ])
-    .factory('AuthenticationService', ['Restangular', 'CookieStorageService', '$http', '$q', AuthenticationService]);
+    .factory('AuthenticationService', ['Restangular', 'CookieStorageService', 'UserStorageService', 'AppNotificationsService', '$http', '$q', AuthenticationService]);
 
-function AuthenticationService(Restangular, CookieStorageService, $http, $q) {
+function AuthenticationService(Restangular, CookieStorageService, UserStorageService, AppNotificationsService, $http, $q) {
 
     return {
         signIn: signIn,
@@ -38,6 +38,10 @@ function AuthenticationService(Restangular, CookieStorageService, $http, $q) {
     function logout() {
         return Restangular.one('logout').get()
             .then(function (response) {
+                UserStorageService.clearLoggedUser();
+                CookieStorageService.removeXAuthToken();
+                AppNotificationsService.logoutConfirmed();
+            }, function (response) {
                 UserStorageService.clearLoggedUser();
                 CookieStorageService.removeXAuthToken();
                 AppNotificationsService.logoutConfirmed();
