@@ -63,6 +63,11 @@ public class Order {
         this.status = OrderStatus.CART;
     }
 
+    public Order(Date creationTime, User user) {
+        this(creationTime);
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
@@ -129,6 +134,10 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void updateDeliveryData(OrderData orderData) {

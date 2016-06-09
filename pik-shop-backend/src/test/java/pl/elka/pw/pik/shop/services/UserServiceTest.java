@@ -19,7 +19,7 @@ public class UserServiceTest {
     UserRepository userRepository;
 
     @InjectMocks
-    private UserService roomService = new UserService();
+    private UserService roomService;
 
     @Before
     public void setUp() throws Exception {

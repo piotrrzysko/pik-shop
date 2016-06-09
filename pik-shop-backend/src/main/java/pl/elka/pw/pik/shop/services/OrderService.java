@@ -3,6 +3,7 @@ package pl.elka.pw.pik.shop.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.elka.pw.pik.shop.domain.model.Product;
+import pl.elka.pw.pik.shop.domain.model.User;
 import pl.elka.pw.pik.shop.domain.model.orders.DeliveryFormType;
 import pl.elka.pw.pik.shop.domain.model.orders.Order;
 import pl.elka.pw.pik.shop.domain.model.orders.OrderStatus;
@@ -15,6 +16,7 @@ import pl.elka.pw.pik.shop.dto.OrderData;
 import pl.elka.pw.pik.shop.dto.OrderItemData;
 import pl.elka.pw.pik.shop.dto.PaymentTypeData;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,13 +27,15 @@ public class OrderService {
     private OrderRepository orderRepository;
     private ProductRepository productRepository;
     private OrderItemRepository orderItemRepository;
+    private UserService userService;
 
     @Autowired
     public OrderService(OrderRepository orderRepository, ProductRepository productRepository,
-                        OrderItemRepository orderItemRepository) {
+                        OrderItemRepository orderItemRepository, UserService userService) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.orderItemRepository = orderItemRepository;
+        this.userService = userService;
     }
 
     public OrderData updateOrder(OrderData orderData) {
@@ -45,6 +49,14 @@ public class OrderService {
         }
     }
 
+    public Order createNewOrder(Long userId) {
+        if (userId != null) {
+            User user = userService.getUser(userId);
+            return new Order(new Date(), user);
+        }
+        return new Order(new Date());
+    }
+
     public void setStatusConfirmed(Long orderId) {
         Order order = findOrderWithCheck(orderId);
         if (order.isNotConfirmed()) {
@@ -53,6 +65,12 @@ public class OrderService {
         } else {
             throw new RuntimeException("Unable to confirm order with id: " + orderId);
         }
+    }
+
+    public OrderData linkWithUser(Order order, Long userId) {
+        User user = userService.getUser(userId);
+        order.setUser(user);
+        return new OrderData(orderRepository.save(order));
     }
 
     public void deleteItem(Long orderItemId, Order order) {
@@ -74,6 +92,11 @@ public class OrderService {
         if (orderId != null) {
             order = orderRepository.findOne(orderId);
         }
+        return Optional.ofNullable(order);
+    }
+
+    public Optional<Order> findUserCurrentOrder(Long userId) {
+        Order order = orderRepository.findByUserIdAndStatus(userId, OrderStatus.CART);
         return Optional.ofNullable(order);
     }
 

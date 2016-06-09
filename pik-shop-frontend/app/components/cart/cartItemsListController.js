@@ -3,9 +3,9 @@
 
     angular
         .module('app.cart')
-        .controller('CartItemsListController', ['$scope', 'Cart', 'toastr', CartItemsListController]);
+        .controller('CartItemsListController', ['$scope', 'Cart', 'toastr', 'UserStorageService', '$state', CartItemsListController]);
 
-    function CartItemsListController($scope, Cart, toastr) {
+    function CartItemsListController($scope, Cart, toastr, UserStorageService, $state) {
         var init = function () {
             $scope.loadCart();
         };
@@ -13,6 +13,20 @@
 
         $scope.isCartEmpty = function() {
             return !$scope.order || !$scope.order.orderItems || !$scope.order.orderItems.length;
+        };
+
+        $scope.isAuthenticated = function() {
+            return UserStorageService.isSignedIn();
+        };
+
+        $scope.linkOrderWithUser = function() {
+            $scope.nextStepButtonDisabled = true;
+            Cart.linkOrderWithUser().then(function () {
+                $state.go('^.delivery-payment');
+            }, function () {
+                $scope.nextStepButtonDisabled = false;
+                toastr.error('Skontaktuj się z biurem obsługi klienta', 'Wystąpił błąd w działaniu aplikacji.');
+            });
         };
 
         $scope.deleteOrderItem = function(itemId) {

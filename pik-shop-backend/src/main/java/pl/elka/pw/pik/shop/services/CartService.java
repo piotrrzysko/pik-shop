@@ -10,19 +10,19 @@ import pl.elka.pw.pik.shop.dto.PaymentTypeData;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-// TODO: Klasa jest po to aby ukryć obsługę ciastek, koszyka zalogowanego itp. przed logiką z klasy OrderService. Teraz jest tylko obsługa ciastek.
-// TODO: Jak już będzie uwierzytelnianie trzeba sprawdzić czy jest zalogowany użytkownik i ewentualnie u niego szukać order-a.
 public class CartService {
     private OrderService orderService;
+    private LoggedUserContextService loggedUserContextService;
+
 
     @Autowired
-    public CartService(OrderService orderService) {
+    public CartService(OrderService orderService, LoggedUserContextService loggedUserContextService) {
         this.orderService = orderService;
+        this.loggedUserContextService = loggedUserContextService;
     }
 
     public OrderData findOrder(Long orderId) {
@@ -47,13 +47,23 @@ public class CartService {
             throw new RuntimeException("Unable to modify order with id: " + orderData.getId());
     }
 
+    public OrderData linkWithUser(Long orderId) {
+        Long userId = getLoggedUser();
+        Optional<Order> orderOpt = findCurrentOrder(orderId);
+        if (orderOpt.isPresent() && orderOpt.get().isNotConfirmed()) {
+            return orderService.linkWithUser(orderOpt.get(), userId);
+        }
+        throw new RuntimeException("Unable to find current order.");
+    }
+
     public void setStatusConfirmed(Long orderId) {
         orderService.setStatusConfirmed(orderId);
     }
 
     public void addItem(OrderItemData orderItemData, Long orderId, HttpServletResponse response) {
+        Long userId = loggedUserContextService.getUserIdFromSecurityContext();
         Optional<Order> orderOpt = findCurrentOrder(orderId);
-        Order order = new Order(new Date());
+        Order order = orderService.createNewOrder(userId);
         if (orderOpt.isPresent() && orderOpt.get().isNotConfirmed())
             order = orderOpt.get();
         order = orderService.addItem(order, orderItemData);
@@ -69,10 +79,23 @@ public class CartService {
     }
 
     private Optional<Order> findCurrentOrder(Long orderId) {
+        Long userId = loggedUserContextService.getUserIdFromSecurityContext();
+        if (userId != null) {
+            Optional<Order> order = orderService.findUserCurrentOrder(userId);
+            if (order.isPresent())
+                return order;
+        }
         return orderService.findOrder(orderId);
     }
 
     private void saveOrderIdInCookies(Order order, HttpServletResponse response) {
         response.addCookie(new Cookie("orderId", String.valueOf(order.getId())));
+    }
+
+    private Long getLoggedUser() {
+        Long userId = loggedUserContextService.getUserIdFromSecurityContext();
+        if (userId != null)
+            return userId;
+        throw new RuntimeException("Unable to find current user.");
     }
 }

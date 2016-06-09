@@ -11,7 +11,8 @@ function CartService(Restangular) {
         confirmOrder: confirmOrder,
         updateOrder: updateOrder,
         getDeliveryFormTypes: getDeliveryFormTypes,
-        getPaymentTypes: getPaymentTypes
+        getPaymentTypes: getPaymentTypes,
+        linkOrderWithUser: linkOrderWithUser
     };
 
     function addOrderItem(productId, amount) {
@@ -44,5 +45,9 @@ function CartService(Restangular) {
 
     function getPaymentTypes() {
         return Restangular.one('public/orders/paymentTypes').get();
+    }
+
+    function linkOrderWithUser() {
+        return Restangular.all('public/orders/linkWithUser').post();
     }
 }
