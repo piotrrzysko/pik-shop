@@ -57,4 +57,9 @@ public class OrderController {
     public List<DeliveryFormTypeData> getDeliveryFormTypes() {
         return cartService.getDeliveryFormTypes();
     }
+
+    @RequestMapping(value = "/linkWithUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public OrderData linkWithUser(@CookieValue(value="orderId", required=false) Long orderId) {
+        return cartService.linkWithUser(orderId);
+    }
 }
