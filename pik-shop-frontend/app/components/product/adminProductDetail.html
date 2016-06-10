@@ -9,7 +9,7 @@
     </div>
 </div>
 <hr class="divider">
-<form ng-submit="addProduct(productForm)" name="productForm" class="form-horizontal">
+<form ng-submit="submitProduct(productForm)" name="productForm" class="form-horizontal">
     <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Nazwa
             <span class="required-star">*</span>
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-if="!edit">
         <label for="inputPhotos" class="col-sm-2 control-label">Zdjęcia</label>
         <div class="col-sm-8">
             <div id="inputPhotos" class="images-upload-box" ngf-select="addImages($files)" ngf-drop="addImages($files)" ngf-multiple="true"
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-if="!edit">
         <div class="col-sm-offset-2 col-sm-8">
             <div ng-repeat="image in productImages">
                 <div class="col-xs-2 thumbnail-box">
@@ -87,10 +87,11 @@
             </div>
         </div>
     </div>
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary" ng-disabled="submitButtonDisabled">
-                Dodaj
+                {{ edit ? "Zapisz" : "Dodaj" }}
             </button>
         </div>
     </div>

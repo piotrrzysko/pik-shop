@@ -46,6 +46,13 @@ public class ProductService {
         productRepository.save(newProduct);
     }
 
+    public ProductData updateProduct(Long productId, ProductData productData) {
+        Product product = new Product(productData);
+        product.setId(productId);
+        productRepository.save(product);
+        return new ProductData(product);
+    }
+
     public void deleteProduct(Long productId) {
         productRepository.delete(productId);
     }

@@ -7,6 +7,7 @@ function ProductService(Restangular, File) {
     return {
         getProducts: getProducts,
         addProduct: addProduct,
+        editProduct: editProduct,
         deleteProduct: deleteProduct,
         getProduct: getProduct
     };
@@ -47,6 +48,21 @@ function ProductService(Restangular, File) {
                 transformRequest: angular.identity
             })
             .customPOST(fd, undefined, undefined, {
+                'Content-Type': undefined
+            });
+    }
+
+    function editProduct(productData, images) {
+        var fd = new FormData();
+        fd.append('productData', new Blob([JSON.stringify(productData)], {
+            type: "application/json"
+        }));
+
+        return Restangular.one('public/products', productData.id)
+            .withHttpConfig({
+                transformRequest: angular.identity
+            })
+            .customPUT(fd, undefined, undefined, {
                 'Content-Type': undefined
             });
     }

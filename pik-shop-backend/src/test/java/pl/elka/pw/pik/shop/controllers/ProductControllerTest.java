@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.HttpMethod;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -12,6 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import pl.elka.pw.pik.shop.PikShopBackendApplication;
@@ -23,6 +26,17 @@ import static org.junit.Assert.assertEquals;
 @SpringApplicationConfiguration(classes = PikShopBackendApplication.class)
 @WebAppConfiguration
 public class ProductControllerTest {
+
+    private static final RequestPostProcessor PUT_REQUEST_POST_PROCESSOR = new RequestPostProcessor() {
+
+        @Override
+        public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
+            request.setMethod(HttpMethod.PUT.name());
+            return request;
+        }
+
+    };
+
     @Autowired
     private ProductController productController;
     private MockMvc mockMvc;
@@ -65,6 +79,22 @@ public class ProductControllerTest {
     }
 
     @Test
+    public void edit_should_return_200() throws Exception {
+        MockMultipartFile productData = new MockMultipartFile("productData", "", "application/json",
+                ("{\"name\":\"Product\"," +
+                        "\"description\":\"Product descriptoin\"," +
+                        "\"price\":\"100.00\"," +
+                        "\"availableCount\":\"1\"," +
+                        "\"productState\":\"DELETED\"}").getBytes());
+
+        MvcResult result = mockMvc
+                .perform(MockMvcRequestBuilders.fileUpload("/public/products/1").file(productData).with(PUT_REQUEST_POST_PROCESSOR))
+                .andReturn();
+
+        assertEquals(200, result.getResponse().getStatus());
+    }
+
+    @Test
     @Transactional
     public void get_list_200() throws Exception {
         MvcResult result = mockMvc
@@ -90,4 +120,5 @@ public class ProductControllerTest {
 
         assertEquals(200, result.getResponse().getStatus());
     }
+
 }
