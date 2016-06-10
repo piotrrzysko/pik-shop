@@ -6,6 +6,9 @@ angular.module('AppNotificationsService', [
             loginConfirmed: function (data) {
                 $rootScope.$broadcast('event:auth-loginConfirmed', data);
             },
+            signUpConfirmed: function () {
+                $rootScope.$broadcast('event:auth-signUpConfirmed');
+            },
             logoutConfirmed: function (data) {
                 $rootScope.$broadcast('event:auth-logoutConfirmed', data);
             },

@@ -1,6 +1,6 @@
 <div class="table-header">
     <span class="table-header-title">Produkty</span>
-    <div class="pull-right-button">
+    <div class="pull-right-button" ng-if="home.isSignedIn()">
         <button ui-sref="^.add-product" class="btn btn-primary btn-md">
             <span class="glyphicon glyphicon-plus"></span> DODAJ PRODUKT
         </button>
@@ -16,7 +16,7 @@
         <td title="'Dostępna ilość'" filter="{availableCount: 'number'}" sortable="'availableCount'" class="table-cell">
             {{product.availableCount}}
         </td>
-        <td>
+        <td ng-if="home.isSignedIn()">
             <button ng-click="deleteProduct(product, $event)" class="btn btn-danger btn-md">USUŃ</button>
         </td>
     </tr>

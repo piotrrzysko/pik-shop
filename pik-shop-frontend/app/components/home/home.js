@@ -92,4 +92,9 @@ function HomeController($rootScope, $state, $scope, Restangular, toastr, UserSto
         $state.go('home');
     });
 
+    $rootScope.$on('event:auth-signUpConfirmed', function () {
+        toastr.success("Zarejestrowano");
+        $state.go('signIn');
+    });
+
 }
