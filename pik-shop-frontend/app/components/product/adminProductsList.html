@@ -17,6 +17,7 @@
             {{product.availableCount}}
         </td>
         <td ng-if="home.isSignedIn()">
+            <button ui-sref="^.edit-product({productId: product.id})" class="btn btn-md">EDYTUJ</button>
             <button ng-click="deleteProduct(product, $event)" class="btn btn-danger btn-md">USUŃ</button>
         </td>
     </tr>

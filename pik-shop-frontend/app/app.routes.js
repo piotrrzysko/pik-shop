@@ -31,6 +31,11 @@
                 templateUrl: '/app/components/product/adminProductDetail.html',
                 controller: 'AdminAddProductController'
             })
+            .state('admin.products.edit-product', {
+                url: '/{productId}/edit',
+                templateUrl: '/app/components/product/adminProductDetail.html',
+                controller: 'AdminEditProductController'
+            })
             .state("products", {
                 abstract: true,
                 url: "/products",

@@ -19,7 +19,7 @@
         };
         init();
 
-        $scope.addProduct = function () {
+        $scope.submitProduct = function () {
             $scope.submitButtonDisabled = true;
             Product.addProduct($scope.productData, $scope.productImages).then(function() {
                 $scope.submitButtonDisabled = false;

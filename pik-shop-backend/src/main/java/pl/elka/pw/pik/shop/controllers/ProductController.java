@@ -39,6 +39,11 @@ public class ProductController {
         return productService.findProduct(productId);
     }
 
+    @RequestMapping(value = "/{productId}", method = RequestMethod.PUT, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductData updateProduct(@Valid @RequestPart("productData") ProductData productData, @PathVariable Long productId) {
+        return productService.updateProduct(productId, productData);
+    }
+
     @RequestMapping(value = "/{productId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteProduct(@PathVariable Long productId) {
         productService.deleteProduct(productId);
